@@ -5,12 +5,23 @@ app/bootstrap*
 vendor/*
 */logs/*
 */cache/*
+web/css/*
+web/js/*
+web/admin/css/*
+web/admin/js/*
 web/uploads/*
 web/bundles/*
+web/media/*
 
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
 
-# Composer
-composer.phar
+# eclipse
+.externalToolBuilders
+.settings
+.buildpath
+.project
+
+#Others
+.DS_Store

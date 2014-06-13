@@ -1,0 +1,36 @@
+Odiseo\LanBundle\Entity\User:
+    type: entity
+    table: fos_user
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstName:
+            column: first_name
+            type: string
+            length: 255
+        lastName:
+            column: last_name
+            type: string
+            length: 255
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: update  
+    oneToMany:
+        twitters:
+            targetEntity: TwitterUser
+            mappedBy: user
+    lifecycleCallbacks: {  }

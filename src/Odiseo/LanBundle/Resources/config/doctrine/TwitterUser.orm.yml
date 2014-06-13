@@ -1,0 +1,34 @@
+Odiseo\LanBundle\Entity\TwitterUser:
+    type: entity
+    table: fos_twitter_user
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        twitter:
+            type: string
+            length: 255
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: update  
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: twitters
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+                onDelete: CASCADE
