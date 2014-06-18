@@ -24,6 +24,7 @@ class AppKernel extends Kernel
         	new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         	new FOS\RestBundle\FOSRestBundle(),
         	new FOS\UserBundle\FOSUserBundle(),
+        	new Gecko\BackendBundle\GeckoBackendBundle(),
             new Odiseo\LanBundle\OdiseoLanBundle(),
         );
 

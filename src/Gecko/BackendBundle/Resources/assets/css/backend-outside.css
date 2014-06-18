@@ -1,0 +1,17 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	/*background: url(/bundles/geckobackend/images/background.jpg) no-repeat left bottom;*/
+	background-size: cover;	
+}
+
+.form-box .logo {
+	margin-bottom: 40px;
+}
+
+.form-box .logo img {
+	max-width: 100%;
+}

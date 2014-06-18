@@ -1,0 +1,34 @@
+odiseo_lan_user_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: lan.controller.user:indexAction
+        _sylius:
+            template: OdiseoLanBundle:Backend/User:index.html.twig
+            paginate: 100
+            
+odiseo_lan_user_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: lan.controller.user:createAction
+        _sylius:
+            template: OdiseoLanBundle:Backend/User:create.html.twig
+            redirect: odiseo_lan_user_update
+
+odiseo_lan_user_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: lan.controller.user:updateAction
+        _sylius:
+            template: OdiseoLanBundle:Backend/User:update.html.twig
+            redirect: odiseo_lan_user_update
+
+odiseo_lan_user_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: lan.controller.user:deleteAction
+        _sylius:
+            redirect: odiseo_lan_user_index

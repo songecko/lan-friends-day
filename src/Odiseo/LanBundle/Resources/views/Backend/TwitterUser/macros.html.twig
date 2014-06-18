@@ -1,0 +1,37 @@
+{% macro list(twitterusers) %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'GeckoBackendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'GeckoBackendBundle:Macros:misc.html.twig' as misc %}
+
+{% if twitterusers|length > 0 %}
+<div class="box">
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover"><tbody>
+			<tr>
+				<th>ID</th>
+				<th>Usuario</th>
+				<th>Twitter</th>
+				<th></th>
+			</tr>
+			{% for twitteruser in twitterusers %}
+	        <tr>
+				<td>{{ twitteruser.id }}</td>
+				<td>{{ twitteruser.user.username }}</td>
+				<td>{{ twitteruser.twitter|truncate(100) }}</td>
+				<td>
+					<div class="pull-right">
+	                    {{ buttons.edit(path('odiseo_lan_twitteruser_update', {'id': twitteruser.id})) }}
+	                    {{ buttons.delete(path('odiseo_lan_twitteruser_delete', {'id': twitteruser.id})) }}
+	                </div>
+				</td>
+			</tr>
+	        {% endfor %}
+		</tbody></table>
+	</div>
+</div>
+{% else %}
+{{ alerts.info('gecko.backend.no_results'|trans) }}
+{% endif %}
+
+{% endmacro %}

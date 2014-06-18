@@ -1,0 +1,4 @@
+odiseo_lan_frontend_homepage:
+    pattern: /
+    defaults: { _controller: OdiseoLanBundle:Frontend/Main:homepage }
+    

@@ -25,12 +25,18 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-
+    
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+            
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [GeckoBackendBundle, FOSUserBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -64,6 +70,21 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+sylius_resource:
+    resources:
+        lan.user:
+            driver: doctrine/orm
+            classes:
+                model: Odiseo\LanBundle\Entity\User
+        lan.twitteruser:
+            driver: doctrine/orm
+            classes:
+                model: Odiseo\LanBundle\Entity\TwitterUser
+        lan.configuration:
+            driver: doctrine/orm
+            classes:
+                model: Odiseo\LanBundle\Entity\Configuration
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'

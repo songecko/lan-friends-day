@@ -1,0 +1,33 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+{% block section_title %}
+<h1>Configuracion</h1>
+{% endblock %}
+
+{% block breadcrums %}
+<ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li>Configuracion</li>
+	<li class="active">Nuevo</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="box">
+			<form action="{{ path('odiseo_lan_configuration_create', {'id': configuration.id}) }}" method="post" enctype="multipart/form-data">
+				<div class="box-body">
+					{{ form_errors(form) }}		
+		    		{% include 'OdiseoLanBundle:Backend/Configuration:_form.html.twig' %}
+				</div>
+				<div class="box-footer">
+					{{ create() }}
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

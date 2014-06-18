@@ -1,0 +1,7 @@
+odiseo_lan_frontend:
+    resource: @OdiseoLanBundle/Resources/config/routing/frontend/main.yml
+    prefix: /
+
+odiseo_lan_backend:
+    resource: @OdiseoLanBundle/Resources/config/routing/backend/main.yml
+    prefix: /admin

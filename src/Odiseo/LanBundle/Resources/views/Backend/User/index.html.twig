@@ -1,0 +1,26 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'GeckoBackendBundle:Macros:misc.html.twig' import pagination %}
+{% from 'OdiseoLanBundle:Backend/User:macros.html.twig' import list  %}
+
+{% block section_title %}
+<h1>Usuarios</h1>
+{% endblock %}
+
+{% block breadcrums %}
+<ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li class="active">Usuarios</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<h2 class="page-header">
+	{{ buttons.create(path('odiseo_lan_user_create'), 'Nuevo') }}
+</h2>
+
+{{ list(users)  }}
+{{ pagination(users) }}
+
+{% endblock %}

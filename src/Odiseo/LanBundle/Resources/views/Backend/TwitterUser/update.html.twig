@@ -1,0 +1,34 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import update %}
+
+{% block section_title %}
+<h1>Twitters</h1>
+{% endblock %}
+
+{% block breadcrums %}
+<ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li>Twitters</li>
+	<li class="active">Editar</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="box">
+			<form action="{{ path('odiseo_lan_twitteruser_update', {'id': twitteruser.id}) }}" method="post" enctype="multipart/form-data">
+				<div class="box-body">
+					{{ form_errors(form) }}		
+		    		<input type="hidden" name="_method" value="PUT">
+		    		{% include 'OdiseoLanBundle:Backend/TwitterUser:_form.html.twig' %}
+				</div>
+				<div class="box-footer">
+					{{ update() }}
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

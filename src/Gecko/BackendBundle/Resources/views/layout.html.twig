@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Panel de administración</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        
+        {% block stylesheets %}
+            {% stylesheets output='css/backend.min.css' filter='cssrewrite'
+                '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
+                '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'
+                'http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css'
+                '@GeckoBackendBundle/Resources/assets/css/AdminLTE.css'
+                '@GeckoBackendBundle/Resources/assets/css/backend.css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+            {% endstylesheets %}
+        {% endblock %}
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-blue">
+        <!-- header logo: style can be found in header.less -->
+        {{ include('GeckoBackendBundle:Layout:header.html.twig') }}
+        
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            {{ include('GeckoBackendBundle:Layout:sidebar.html.twig') }}
+            
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+            	<!-- Content Header (Page header) -->
+                <section class="content-header">
+                	{% block section_title %}<h1>&nbsp;</h1>{% endblock %}
+					
+                	{% block breadcrums %}
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    </ol>
+                    {% endblock %}
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                	{% include 'GeckoBackendBundle:Layout:flashes.html.twig' %}
+	                {% block content %}
+	                {% endblock %}
+	            </section><!-- /.content -->
+			 </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+        
+        {# javascripts... #}
+        {% block javascripts %}
+        {% javascripts output='js/backend.min.js'
+            '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'
+            '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'
+            '@GeckoBackendBundle/Resources/assets/js/AdminLTE/app.js'
+            '@GeckoBackendBundle/Resources/assets/js/backend.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

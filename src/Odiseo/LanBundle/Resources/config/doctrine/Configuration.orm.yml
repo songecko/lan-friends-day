@@ -1,0 +1,14 @@
+Odiseo\LanBundle\Entity\Configuration:
+    type: entity
+    table: configuration
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        isAvailable:
+            column: is_avaliable
+            type: boolean
+    lifecycleCallbacks: {  }

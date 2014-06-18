@@ -1,0 +1,34 @@
+odiseo_lan_configuration_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: lan.controller.configuration:indexAction
+        _sylius:
+            template: OdiseoLanBundle:Backend/Configuration:index.html.twig
+            paginate: 100
+            
+odiseo_lan_configuration_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: lan.controller.configuration:createAction
+        _sylius:
+            template: OdiseoLanBundle:Backend/Configuration:create.html.twig
+            redirect: odiseo_lan_configuration_update
+
+odiseo_lan_configuration_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: lan.controller.configuration:updateAction
+        _sylius:
+            template: OdiseoLanBundle:Backend/Configuration:update.html.twig
+            redirect: odiseo_lan_configuration_update
+
+odiseo_lan_configuration_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: lan.controller.configuration:deleteAction
+        _sylius:
+            redirect: odiseo_lan_configuration_index

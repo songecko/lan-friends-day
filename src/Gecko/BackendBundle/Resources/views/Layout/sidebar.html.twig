@@ -1,0 +1,22 @@
+<aside class="left-side sidebar-offcanvas">                
+	<!-- sidebar: style can be found in sidebar.less -->
+	<section class="sidebar">
+		<!-- Sidebar user panel -->
+		<div class="user-panel">
+			<!-- <div class="pull-left image">
+				<img src="img/avatar3.png" class="img-circle" alt="User Image" />
+			</div> -->
+			<div class="pull-left info">
+				<p>Hola, Administrador</p>	
+				<!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a>  -->
+			</div>
+		</div>
+		
+		<!-- search form -->
+		{#{ include('GeckoBackendBundle:Layout/Sidebar:searchForm.html.twig') }#}
+		
+		<!-- sidebar menu: : style can be found in sidebar.less -->
+		{{ knp_menu_render('backend_main_menu', {'template': 'GeckoBackendBundle::menu.html.twig', 'currentClass': 'active'}) }}
+	</section>
+	<!-- /.sidebar -->
+</aside>

@@ -1,0 +1,39 @@
+{% macro list(configurations) %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'GeckoBackendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'GeckoBackendBundle:Macros:misc.html.twig' as misc %}
+
+{% if configurations|length > 0 %}
+<div class="box">
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover"><tbody>
+			<tr>
+				<th>ID</th>
+				<th>Habilitado?</th>
+				<th></th>
+			</tr>
+			{% for configuration in configurations %}
+	        <tr>
+				<td>{{ configuration.id }}</td>
+				{% if(configuration.isAvailable) %}
+					<td>Si</td>
+				{% else %}
+					<td>No</td>
+				{% endif %}
+				<td>
+					<div class="pull-right">
+	                    {{ buttons.edit(path('odiseo_lan_configuration_update', {'id': configuration.id})) }}
+	                    {{ buttons.delete(path('odiseo_lan_configuration_delete', {'id': configuration.id})) }}
+	                </div>
+				</td>
+			</tr>
+	        {% endfor %}
+		</tbody></table>
+	</div>
+</div>
+{% else %}
+{{ alerts.info('gecko.backend.no_results'|trans) }}
+{% endif %}
+
+{% endmacro %}

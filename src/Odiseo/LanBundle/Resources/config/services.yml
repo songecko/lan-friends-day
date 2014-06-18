@@ -2,6 +2,30 @@ parameters:
 #    odiseo_lan.example.class: Odiseo\LanBundle\Example
 
 services:
-#    odiseo_lan.example:
-#        class: %odiseo_lan.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    odiseo_lan.backend.menu_builder:
+        class: Odiseo\LanBundle\Menu\BackendMenuBuilder
+        arguments: ["@knp_menu.factory", "@security.context"]
+        
+    odiseo_lan.backend.menu.main:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: odiseo_lan.backend.menu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: backend_main_menu } # The alias is what is used to retrieve the menu
+            
+    lan.form.type.user:
+        class: Odiseo\LanBundle\Form\Type\UserType
+        tags:
+            - { name: form.type, alias: lan_user }
+            
+    lan.form.type.twitteruser:
+        class: Odiseo\LanBundle\Form\Type\TwitterUserType
+        tags:
+            - { name: form.type, alias: lan_twitteruser }
+            
+    lan.form.type.configuration:
+        class: Odiseo\LanBundle\Form\Type\ConfigurationType
+        tags:
+            - { name: form.type, alias: lan_configuration }

@@ -1,0 +1,15 @@
+odiseo_lan_backend_dashboard:
+    pattern: /dashboard
+    defaults: { _controller: OdiseoLanBundle:Backend/Main:dashboard }
+
+odiseo_lan_backend_user:
+    resource: @OdiseoLanBundle/Resources/config/routing/backend/user.yml
+    prefix: /users
+    
+odiseo_lan_backend_twitteruser:
+    resource: @OdiseoLanBundle/Resources/config/routing/backend/twitterUser.yml
+    prefix: /twitters
+    
+odiseo_lan_backend_configuration:
+    resource: @OdiseoLanBundle/Resources/config/routing/backend/configuration.yml
+    prefix: /configuration

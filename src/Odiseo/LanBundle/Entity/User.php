@@ -47,6 +47,11 @@ class User extends BaseUser
     {
         return $this->lastName;
     }
+    
+	public function getFullname()
+    {
+    	return $this->getFirstName().' '.$this->getLastName();
+    }
 
     public function setCreatedAt($createdAt)
     {
@@ -87,5 +92,10 @@ class User extends BaseUser
     public function getTwitters()
     {
         return $this->twitters;
+    }
+    
+    public function __toString()
+    {
+    	return $this->getUsername();
     }
 }
