@@ -12,11 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     protected $id;
-    private $firstName;
-    private $lastName;
-    private $createdAt;
-    private $updatedAt;
-    private $twitters;
+    protected $twitter_id;
+    protected $twitter_access_token;
+    protected $createdAt;
+    protected $updatedAt;
+    protected $twitters;
     
     public function __construct()
     {
@@ -24,33 +24,28 @@ class User extends BaseUser
     	$this->createdAt = new DateTime('now');
     }
     
-    public function setFirstName($firstName)
+    public function setTwitterId($twitterId)
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getLastName()
-    {
-        return $this->lastName;
+    	$this->twitter_id = $twitterId;
+    
+    	return $this;
     }
     
-	public function getFullname()
+    public function getTwitterId()
     {
-    	return $this->getFirstName().' '.$this->getLastName();
+    	return $this->twitter_id;
+    }
+    
+    public function setTwitterAccessToken($twitterAccessToken)
+    {
+    	$this->twitter_access_token = $twitterAccessToken;
+    
+    	return $this;
+    }
+    
+    public function getTwitterAccessToken()
+    {
+    	return $this->twitter_access_token;
     }
 
     public function setCreatedAt($createdAt)

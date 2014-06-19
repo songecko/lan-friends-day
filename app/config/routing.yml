@@ -5,3 +5,28 @@ gecko_backend:
 odiseo_lan:
     resource: "@OdiseoLanBundle/Resources/config/routing/main.yml"
     prefix:   /
+
+#FosUserBundle Routes
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix:   /admin
+    
+fos_user_security_logout:
+    pattern:  /logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+    
+#HWIOAuthBundle routes
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /login
+ 
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix: /login
+ 
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /login
+ 
+twitter_login:
+    pattern: /login/check-twitter

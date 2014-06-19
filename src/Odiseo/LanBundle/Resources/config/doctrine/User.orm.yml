@@ -8,14 +8,16 @@ Odiseo\LanBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
-        firstName:
-            column: first_name
+        twitter_id:
+            column: twitter_id
             type: string
             length: 255
-        lastName:
-            column: last_name
+            nullable: true
+        twitter_access_token:
+            column: twitter_access_token
             type: string
             length: 255
+            nullable: true
         createdAt:
             column: created_at
             type: datetime

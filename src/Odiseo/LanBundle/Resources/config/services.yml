@@ -1,7 +1,12 @@
 parameters:
-#    odiseo_lan.example.class: Odiseo\LanBundle\Example
+    my_user_provider.class: Odiseo\LanBundle\Security\User\TwitterUserProvider
 
 services:
+    my_user_provider:
+        class: "%my_user_provider.class%"
+        #this is the place where the properties are passed to the UserProvider - see config.yml
+        arguments: [@fos_user.user_manager, {twitter: twitter_id}]
+        
     odiseo_lan.backend.menu_builder:
         class: Odiseo\LanBundle\Menu\BackendMenuBuilder
         arguments: ["@knp_menu.factory", "@security.context"]

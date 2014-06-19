@@ -17,8 +17,6 @@ class LoadUserData extends DataFixture
     	$userAdmin->setPlainPassword('123456');
     	$userAdmin->setEnabled(true);
     	$userAdmin->setRoles(array('ROLE_ADMIN'));
-    	$userAdmin->setFirstName($this->faker->word);
-    	$userAdmin->setLastName($this->faker->word);
     	$manager->persist($userAdmin);
     	
     	$userTwitter = new User();
@@ -27,8 +25,6 @@ class LoadUserData extends DataFixture
     	$userTwitter->setPlainPassword('123456');
     	$userTwitter->setEnabled(true);
     	$userTwitter->setRoles(array('ROLE_USER'));
-    	$userTwitter->setFirstName($this->faker->word);
-    	$userTwitter->setLastName($this->faker->word);
     	$manager->persist($userTwitter);
     	
     	$manager->flush();
