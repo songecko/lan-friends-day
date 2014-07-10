@@ -1,0 +1,50 @@
+@font-face {
+	font-family: '33535gillsansmt';
+	src: url('../fonts/33535gillsansmt.eot');
+	src: local('33535gillsansmt'), url('../fonts/33535gillsansmt.woff') format('woff'), url('../fonts/33535gillsansmt.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_1416">Text with this font applied</p> */
+.fontsforweb_fontid_1416 {
+	font-family: '33535gillsansmt' !important;
+}
+
+html, body, label { 
+	font-family: "Avant Garde", "Century Gothic", "Avant Garde Gothic", "URW Gothic L", helvetica, sans-serif;
+}
+
+body{ 
+	font-family: arial;
+	background-color: rgb(245, 238, 238); 
+} 
+
+.container { width: 1290px; padding: 0;}
+
+.cuerpo { background:  url(../images/background.jpg) no-repeat; height: 618px;  }
+
+h1{
+	margin: 0;
+	color: #FFFFFF;
+	padding: 98px 374px;
+}
+
+footer{
+	background-color: #FFFFFF;
+	height: 83px;
+	padding-top: 19px;
+	padding-left: 300px;
+}
+
+footer img{
+	float: left;
+}
+footer p{
+	float: left;
+	color: #a6a7a9;
+	font-size: 11px;	
+	padding-left: 16px;
+	padding-top: 3px;
+}
+
+footer p a{
+	cursor:pointer;
+}

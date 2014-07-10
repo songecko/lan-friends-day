@@ -2,18 +2,50 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Lan</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+		<meta name="description" content="Lan">
+		<meta name="keywords" content="lan">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="mobile-web-app-capable" content="yes">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <title>{% block title %}Lan{% endblock %}</title>
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+	     <!-- stylesheets -->
+		{# stylesheets... #}
+		{% block stylesheets %}
+		{% stylesheets output='css/frontend.min.css' filter='cssrewrite'
+			'bundles/odiseolan/css/vendor/bootstrap.min.css'
+			'bundles/odiseolan/css/main.css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+		{% endblock %}
     </head>
     <body>
-		{% block content %}
+    	<div class="container">
+	    	<header>
+				<img src="{{ asset('bundles/odiseolan/images/header.jpg') }}" alt="Lan" />
+	    	</header>
+			{% block content %}
+			<section></section>
+			{% endblock %}
+			<footer>
+				  <img src="{{ asset('bundles/odiseolan/images/footer-lan.png') }}" />
+				  <p>Promoción válida en Argentina desde el 01.04.2014 hasta el 31.05.2014. Ver bases y condiciones en <a>www.lan.com.ar</a></p>
+			</footer>
+		</div>
+		
+		<!-- javascript -->
+		{# javascripts... #}
+		{% block javascripts %}
+		<script type="text/javascript" src="{{ asset('bundles/odiseolan/js/vendor/jquery-1.11.1.min.js') }}"></script>
+		{% javascripts output='js/frontend.min.js'
+			'bundles/odiseolan/js/vendor/bootstrap.min.js'
+			'bundles/odiseolan/js/main.js'
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 		{% endblock %}
     </body>
 </html>

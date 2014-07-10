@@ -36,7 +36,7 @@ services:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [GeckoBackendBundle, FOSUserBundle]
+    bundles:        [GeckoBackendBundle, FOSUserBundle, OdiseoLanBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
