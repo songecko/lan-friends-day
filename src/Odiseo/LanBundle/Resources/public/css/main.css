@@ -10,7 +10,7 @@
 
 body{ 
 	font-family: arial;
-	background-color: rgb(245, 238, 238); 
+	background-color: rgb(206, 206, 206); 
 } 
 
 .container { width: 1290px; padding: 0;}
@@ -18,12 +18,14 @@ body{
 button { padding: 0; border: none; outline: 0;} /* todos los botones */
 
 h1{
-	margin: 0;
+	margin: 0 0 40px 0;
+	padding-top: 65px;
 	color: #FFFFFF;
-	padding: 98px 278px;
 	text-shadow: #4b74af -1px 3px 1px;
 	font-size: 53px;
+	text-align: center;
 }
+
 header{
 	background:  url(../images/header.jpg) no-repeat; height: 83px;
 }
@@ -61,7 +63,47 @@ footer p a{
 
 .cuerpo { background:  url(../images/background.jpg) no-repeat; height: 618px;  }
 
-.cuerpo .form {width: 793px; margin-left: 245px; margin-top: 135px; position:relative; box-shadow:  0px 3px 4px 2px #777780; }
+.cuerpo .countdown {
+	width: 665px;
+	margin: 0 auto;
+}
+
+.cuerpo .countdown > div {
+	background: url(../images/countdown-background.png) no-repeat;
+	width: 155px;
+	height: 175px;
+	float: left;
+	margin-right: 15px;
+	position: relative;
+	-webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 5px 4px 0px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 5px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.cuerpo .countdown > div:last-child {
+	margin-right: 0;
+}
+
+.cuerpo .countdown > div .number {
+	font-size: 100px;
+	text-align: center;
+	line-height: 175px;
+	color: #0154a6;
+}
+
+.cuerpo .countdown > div .label {
+	position: absolute;
+	bottom: 0;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	color: #8f9da9;
+	text-transform: uppercase;
+	padding-bottom: 16px;
+}
+
+.cuerpo .form {width: 793px; margin: 55px auto 0 auto; position:relative; box-shadow:  0px 3px 4px 2px #777780; }
 
 .cuerpo .form .formTop { 	 
 	height: 147px; 
