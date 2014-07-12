@@ -21,28 +21,11 @@
 			<div class="label">Segundos</div>
 		</div>
 	</div>
-	<form class="form">
-		<div class="formTop">
-			<img src="{{ asset('bundles/odiseolan/images/form-image.png') }}" />
-			<div class="inputsTop">
-				<input type="text" name="fullname" placeholder="Nombre y Apellido" class="long">
-				<input type="text" name="dni" placeholder="Dni" class="short">
-				<input type="text" name="age" placeholder="Edad" class="short">
-				<input type="text" name="phone" placeholder="Teléfono" class="long">
-			</div>
-			<div class="inputsBottom">
-				<input type="text" name="nationality" placeholder="Nacionalidad" class="long">
-				<input type="text" name="email" placeholder="Mail" class="email">
-				<input type="checkbox" name="terms" value="terms" class="checkbox"><p>Acepto los términos y condiciones</p>
-			</div>
-		</div>
-		<div class="formBottom">
-			<button class="follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />FOLLOW</button>
-			<button type="submit " class="register fontsforweb_fontid_1416">PARTICIPAR</button>
-		</div>
-	</form>
-	<div class="signinTwitter">
-		<button class="follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />INGRESAR CON TWITTER</button><p>PARA ASEGURARTE UN LUGAR</p>
+	
+	<div id="content">
+			{{ render(controller('OdiseoLanBundle:Frontend/Main:renderContent')) }}
+	
 	</div>
-</div>
+	
+	</div>
 {% endblock %}

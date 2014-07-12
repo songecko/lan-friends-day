@@ -18,6 +18,15 @@ class User extends BaseUser
     protected $updatedAt;
     protected $twitters;
     
+    protected $fullName;
+   	protected $dni;
+   	protected $edad;
+   	protected $telefono;
+   	protected $nacionalidad;
+   	protected $mail;
+   	
+   	protected $profilePicture;
+    
     public function __construct()
     {
     	parent::__construct();
@@ -72,6 +81,7 @@ class User extends BaseUser
         return $this->updatedAt;
     }
 
+    
     public function addTwitter(\Odiseo\LanBundle\Entity\TwitterUser $twitters)
     {
         $this->twitters[] = $twitters;
@@ -93,4 +103,57 @@ class User extends BaseUser
     {
     	return $this->getUsername();
     }
+	
+	public function getFullName() {
+		return $this->fullName;
+	}
+	
+	public function setFullName($fullName) {
+		$this->fullName = $fullName;
+		return $this;
+	}
+	public function getDni() {
+		return $this->dni;
+	}
+	public function setDni($dni) {
+		$this->dni = $dni;
+		return $this;
+	}
+	public function getEdad() {
+		return $this->edad;
+	}
+	public function setEdad($edad) {
+		$this->edad = $edad;
+		return $this;
+	}
+	public function getTelefono() {
+		return $this->telefono;
+	}
+	public function setTelefono($telefono) {
+		$this->telefono = $telefono;
+		return $this;
+	}
+	public function getNacionalidad() {
+		return $this->nacionalidad;
+	}
+	public function setNacionalidad($nacionalidad) {
+		$this->nacionalidad = $nacionalidad;
+		return $this;
+	}
+	public function getMail() {
+		return $this->mail;
+	}
+	public function setMail($mail) {
+		$this->mail = $mail;
+		return $this;
+	}
+	public function getProfilePicture() {
+		return $this->profilePicture;
+	}
+	public function setProfilePicture($profilePicture) {
+		$this->profilePicture = $profilePicture;
+		return $this;
+	}
+	
+	
 }

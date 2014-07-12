@@ -14,7 +14,6 @@ class TwitterUserProvider extends BaseClass
     {
         $property = $this->getProperty($response);
         $username = $response->getUsername();
- 
         //on connect - get the access token and the user ID
         $service = $response->getResourceOwner()->getName();
  
@@ -64,6 +63,7 @@ class TwitterUserProvider extends BaseClass
             $user->setEmail('none@email.com');
             $user->setPassword(md5(time()));
             $user->setEnabled(true);
+            $user->setProfilePicture($response->getProfilePicture());
             $this->userManager->updateUser($user);
             return $user;
         }

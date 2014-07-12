@@ -31,6 +31,37 @@ Odiseo\LanBundle\Entity\User:
             gedmo:
               timestampable:
                 on: update  
+        fullName:
+            column: full_name
+            type: string
+            length: 255
+            nullable: true  
+        dni:
+            column: dni
+            type: string
+            length: 255
+            nullable: true
+        edad:
+            column: edad
+            type: string
+            length: 255
+            nullable: true 
+        telefono:
+            column: telefono
+            type: string
+            length: 255
+            nullable: true
+        nacionalidad:
+            column: nacionalidad
+            type: string
+            length: 255
+            nullable: true
+        mail:
+            column: mail
+            type: string
+            length: 255
+            nullable: true                
+         
     oneToMany:
         twitters:
             targetEntity: TwitterUser

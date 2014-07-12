@@ -25,7 +25,18 @@
     <body>
     	<div class="container">
 	    	<header>				
-				<button class="follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />INGRESAR CON TWITTER</button>
+	    		
+	    		{% if app.user  %}
+	    		
+	    		
+	    		<a href="#"  class="follow fontsforweb_fontid_1416"><img src="{{ app.user.profilePicture }}" />{{ app.user.userName }}</a>
+	    	
+	    		{% else %}
+	    		
+	    		<a href="/login/twitter"  class="follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />INGRESAR CON TWITTER</a>
+	    		
+	    		{% endif %}
+	    	
 	    	</header>
 			{% block content %}
 			<section></section>

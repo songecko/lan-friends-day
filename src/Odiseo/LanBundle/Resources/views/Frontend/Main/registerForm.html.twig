@@ -1,0 +1,24 @@
+<!--  USER IS LOGGED , BUT IS NOT PARTCIPATING -->
+
+
+<form class="form" action="{{ path('lan_register')}}" method="post" id="register-form">
+		<div class="formTop">
+			<img src="{{ asset('bundles/odiseolan/images/form-image.png') }}" />
+			<div class="inputsTop">
+				<input type="text" name="register[fullname]" placeholder="Nombre y Apellido"  id="register_fullname" class="long">
+				<input type="text" name="register[dni]" id="register_dni"  placeholder="Dni" class="short">
+				<input type="text" name="register[edad]" id="register_edad"  placeholder="Edad" class="short">
+				<input type="text" name="register[telefono]" id="register_telefono"   placeholder="Teléfono" class="long">
+			</div>
+			<div class="inputsBottom">
+				<input type="text"  name="register[nacionalidad]" id="register_nacionalidad" placeholder="Nacionalidad" class="long">
+				<input type="text" name="register[mail]" id="register_mail"  placeholder="Mail" class="email">
+				<input type="checkbox" name="terms" value="terms" class="checkbox"><p>Acepto los términos y condiciones</p>
+			</div>
+		</div>
+		<div class="formBottom">
+			<button class="follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />FOLLOW</button>
+			<button type="submit " class="register fontsforweb_fontid_1416">PARTICIPAR</button>
+		</div>
+	
+</form>
