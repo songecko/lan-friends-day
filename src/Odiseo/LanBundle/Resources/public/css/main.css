@@ -8,10 +8,6 @@
 	font-family: '33535gillsansmt' !important;
 }
 
-html, body, label { 
-	font-family: "Avant Garde", "Century Gothic", "Avant Garde Gothic", "URW Gothic L", helvetica, sans-serif;
-}
-
 body{ 
 	font-family: arial;
 	background-color: rgb(245, 238, 238); 
@@ -19,14 +15,28 @@ body{
 
 .container { width: 1290px; padding: 0;}
 
-.cuerpo { background:  url(../images/background.jpg) no-repeat; height: 618px;  }
+button { padding: 0; border: none; outline: 0;} /* todos los botones */
 
 h1{
 	margin: 0;
 	color: #FFFFFF;
-	padding: 98px 374px;
+	padding: 98px 278px;
+	text-shadow: #4b74af -1px 3px 1px;
+	font-size: 53px;
 }
-
+header{
+	background:  url(../images/header.jpg) no-repeat; height: 83px;
+}
+header button{
+	background-color: #0090e2;
+	margin-left: 909px;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #FFFFFF;	
+}
+header button img{
+	padding-right: 8px;
+}
 footer{
 	background-color: #FFFFFF;
 	height: 83px;
@@ -48,3 +58,99 @@ footer p{
 footer p a{
 	cursor:pointer;
 }
+
+.cuerpo { background:  url(../images/background.jpg) no-repeat; height: 618px;  }
+
+.cuerpo .form {width: 793px; margin-left: 245px; margin-top: 135px; position:relative; box-shadow:  0px 3px 4px 2px #777780; }
+
+.cuerpo .form .formTop { 	 
+	height: 147px; 
+	background-color: #f6f6f6;	
+}
+.cuerpo .form .formTop img{
+	position: absolute;
+	top: 20px;
+}
+
+.cuerpo .form .formTop .inputsTop{
+	margin-left: 67px;
+	padding-top: 44px
+}
+
+.cuerpo .form .formTop input{
+	height: 39px;
+	font-size: 14px;
+	font-family: 'Arial Bold', sans-serif;
+	padding-left: 7px;
+	color: #6f8697;
+}
+.cuerpo .form .formTop .long  {
+	width: 227px;
+}
+.cuerpo .form .formTop .email {
+	width: 206px;
+}
+
+.cuerpo .form .formTop .inputsTop .short {
+	width: 98px;
+}
+
+.cuerpo .form .formTop input{
+	float:left;
+	margin-right: 8px;
+}
+
+.cuerpo .form .formTop .inputsBottom{
+	margin-left: 67px;
+	padding-top: 44px
+}
+
+.cuerpo .form .formTop .inputsBottom .checkbox{
+	margin-top: 2px;
+}
+
+.cuerpo .form .formTop .inputsBottom p{
+	margin-top: 2px;
+	font-size: 11px;
+	font-family: 'Arial', sans-serif;
+	margin-top: 14px;
+	color: #6a6a6a;
+}
+.cuerpo .form .formBottom { height: 60px; background-color: #e4e4e4; padding-left: 510px; padding-top: 11px;}
+
+
+.cuerpo .form .formBottom button{
+	width: 108px;
+	height: 37px;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+.cuerpo .form .formBottom .follow { background-color: #0090e2;}
+
+.cuerpo .form .formBottom .follow img { padding-right: 6px; }
+
+.cuerpo .form .formBottom .register { background-color: #e21620; }
+
+.cuerpo .signinTwitter { margin-left: 445px; margin-top: 167px;  display:none}
+
+.cuerpo .signinTwitter .follow { background-color: #0090e2; height: 40px; color: #FFFFFF; float:left; width: 220px;}
+
+.cuerpo .signinTwitter p{
+	float: left;
+	padding-left: 12px;
+	color: #FFFFFF;
+	padding-top: 11px;
+	text-shadow: #4b74af -1px 3px 1px;
+}
+
+.cuerpo .signinTwitter img{
+	padding-right: 8px;
+}
+
+
+
+
+
+
+
