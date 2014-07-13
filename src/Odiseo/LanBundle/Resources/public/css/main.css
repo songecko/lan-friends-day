@@ -29,14 +29,15 @@ h1{
 header{
 	background:  url(../images/header.jpg) no-repeat; height: 83px;
 }
-header button{
+header a{
 	background-color: #0090e2;
 	margin-left: 909px;
 	margin-top: 20px;
 	font-size: 14px;
 	color: #FFFFFF;	
+	ps
 }
-header button img{
+header a img{
 	padding-right: 8px;
 }
 footer{
@@ -191,7 +192,9 @@ footer p a{
 }
 
 
-
+.cuerpo .form .error{
+	border: 1px solid red;	
+}
 
 
 
