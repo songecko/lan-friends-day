@@ -10,22 +10,43 @@ use Doctrine\ORM\Mapping as ORM;
 class Configuration
 {
     private $id;
-    private $isAvailable;
+    private $dateBegin;
+    private $dateEnd;
     
     public function getId()
     {
         return $this->id;
     }
 
-    public function setIsAvailable($isAvailable)
+	public function setDateBegin($dateBegin)
     {
-        $this->isAvailable = $isAvailable;
-
+        $this->dateBegin = $dateBegin;
+    
         return $this;
     }
 
-    public function getIsAvailable()
+    public function getDateBegin()
     {
-        return $this->isAvailable;
+        return $this->dateBegin;
+    }
+
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+    
+        return $this;
+    }
+    
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
+    
+    public function isCampaignActive()
+    {
+    	return (
+    		(strtotime("now") > $this->getDateBegin()->format('U')) &&
+    		(strtotime("now") < $this->getDateEnd()->format('U'))
+		);
     }
 }

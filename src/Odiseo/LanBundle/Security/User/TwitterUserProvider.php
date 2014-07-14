@@ -48,6 +48,7 @@ class TwitterUserProvider extends BaseClass
         //when the user is registrating
         if (null === $user) {
         	$twitterName = isset($attr['screen_name'])?$attr['screen_name']:$username;
+        	$twitterProfileImageUrl = isset($attr['profile_image_url'])?$attr['profile_image_url']:'';
         	
             $service = $response->getResourceOwner()->getName();
             $setter = 'set'.ucfirst($service);
@@ -63,7 +64,7 @@ class TwitterUserProvider extends BaseClass
             $user->setEmail('none@email.com');
             $user->setPassword(md5(time()));
             $user->setEnabled(true);
-            $user->setProfilePicture($response->getProfilePicture());
+            $user->setTwitterProfileImageUrl($twitterProfileImageUrl);
             $this->userManager->updateUser($user);
             return $user;
         }
