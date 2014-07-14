@@ -30,17 +30,16 @@ header{
 	background:  url(../images/header.jpg) no-repeat; height: 83px;
 }
 header .login{
-	margin-left: 909px;
-	padding-top: 12px;
-	font-size: 14px;
-	color: #FFFFFF;
-	position: relative;
+	margin-left: 900px;
+	padding-top: 22px;
+	background: url("../images/twitter.png") no-repeat 2% 92%;
+
 }
 header a.ingresar{
 	color: #FFFFFF;
 }
 header a.ingresar p{
-	padding-left: 15px;;
+	padding-left: 37px;
 }
 header a img{
 	padding-right: 8px;
