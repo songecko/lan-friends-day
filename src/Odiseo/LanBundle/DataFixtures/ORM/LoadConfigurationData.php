@@ -12,7 +12,8 @@ class LoadConfigurationData extends DataFixture
     {
     	/** CONFIGURATION **/
     	$configuration = new Configuration();
-    	$configuration->setIsAvailable(false);
+    	$configuration->setDateBegin(new \DateTime('now + 3 days'));
+    	$configuration->setDateEnd(new \DateTime('now + 5 days'));
     	$manager->persist($configuration);
     	
     	$manager->flush();

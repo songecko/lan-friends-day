@@ -18,6 +18,11 @@ Odiseo\LanBundle\Entity\User:
             type: string
             length: 255
             nullable: true
+        twitter_profile_image_url:
+            column: twitter_profile_image_url
+            type: string
+            length: 255
+            nullable: true
         createdAt:
             column: created_at
             type: datetime

@@ -14,6 +14,7 @@ class User extends BaseUser
     protected $id;
     protected $twitter_id;
     protected $twitter_access_token;
+    protected $twitter_profile_image_url;
     protected $createdAt;
     protected $updatedAt;
     protected $twitters;
@@ -57,6 +58,18 @@ class User extends BaseUser
     	return $this->twitter_access_token;
     }
 
+    public function setTwitterProfileImageUrl($twitterProfileImageUrl)
+    {
+    	$this->twitter_profile_image_url = $twitterProfileImageUrl;
+    
+    	return $this;
+    }
+    
+    public function getTwitterProfileImageUrl()
+    {
+    	return $this->twitter_profile_image_url;
+    }
+    
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
@@ -146,14 +159,6 @@ class User extends BaseUser
 	public function setMail($mail) {
 		$this->mail = $mail;
 		return $this;
-	}
-	public function getProfilePicture() {
-		return $this->profilePicture;
-	}
-	public function setProfilePicture($profilePicture) {
-		$this->profilePicture = $profilePicture;
-		return $this;
-	}
-	
+	}	
 	
 }

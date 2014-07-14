@@ -8,7 +8,10 @@ Odiseo\LanBundle\Entity\Configuration:
             generator:
                 strategy: AUTO
     fields:
-        isAvailable:
-            column: is_avaliable
-            type: boolean
+        dateBegin:
+            column: date_begin
+            type: date
+        dateEnd:
+            column: date_end
+            type: date
     lifecycleCallbacks: {  }
