@@ -40,7 +40,7 @@ class MainController extends Controller {
 		
 		$register = $request->get ( 'register' );
 		$this->saveUser($register);
-		return $this->forward ( 'OdiseoLanBundle:Frontend/Main:index' );
+		return $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage'));
 	}
 	
 	private function saveUser($register){

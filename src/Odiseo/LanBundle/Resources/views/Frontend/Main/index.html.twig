@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="cuerpo">
-	<h1 class="fontsforweb_fontid_1416">ASEGURÁ TU LUGAR, FALTAN:</h1>
+	<h1 class="fontsforweb_fontid_1416">{% if app.user.dni is defined and app.user.dni is not null %}TENÉS EL LUGAR ASEGURADO, FALTAN{% else %}ASEGURÁ TU LUGAR, FALTAN:{% endif %}</h1>
 	<div class="countdown clearfix" data-end-date="July 19, 2014 15:03:25">
 		<div class="day">
 			<div class="number">0</div>

@@ -29,7 +29,7 @@
 	    		{% if app.user  %}
 	    		
 	    		<div class="login">
-	    			<a href="#"  class="follow fontsforweb_fontid_1416 avatar"><img src="{{ asset('bundles/odiseolan/images/avatar.png') }}" /><p class="welcome">Bienvenido</p><p class="user">{{ app.user.userName }}</p></a>
+	    			<a href="#"  class="follow fontsforweb_fontid_1416 avatar"><img src="{{ app.user.twitterProfileImageUrl }}" /><p class="welcome">Bienvenido</p><p class="user">{{ app.user.userName }}</p></a>
 	    		</div>
 	    			    	
 	    		{% else %}
