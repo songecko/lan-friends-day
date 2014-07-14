@@ -35,7 +35,7 @@ header a{
 	margin-top: 20px;
 	font-size: 14px;
 	color: #FFFFFF;	
-	ps
+	position: absolute;
 }
 header a img{
 	padding-right: 8px;
@@ -175,7 +175,7 @@ footer p a{
 
 .cuerpo .form .formBottom .register { background-color: #e21620; }
 
-.cuerpo .signinTwitter { margin-left: 445px; margin-top: 167px;  display:none}
+.cuerpo .signinTwitter { margin-left: 445px; margin-top: 167px;  display:block;}
 
 .cuerpo .signinTwitter .follow { background-color: #0090e2; height: 40px; color: #FFFFFF; float:left; width: 220px;}
 
