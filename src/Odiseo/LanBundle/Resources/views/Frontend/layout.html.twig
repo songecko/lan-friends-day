@@ -29,12 +29,15 @@
 	    		{% if app.user  %}
 	    		
 	    		<div class="login">
-	    			<a href="#"  class="follow fontsforweb_fontid_1416 avatar"><img src="{{ app.user.twitterProfileImageUrl }}" /><p class="welcome">Bienvenido</p><p class="user">{{ app.user.userName }}</p></a>
+	    			<img src="{{ asset('bundles/odiseolan/images/avatar.png') }}" />
+	    			<div class="user">
+	    				<p class="welcome">Bienvenido</p><p class="username">{{ app.user.userName }}</p>
+	    			</div>
 	    		</div>
 	    			    	
 	    		{% else %}
 	    		
-	    		<div class="login">
+	    		<div class="singin">
 	    			<a href="{{ hwi_oauth_login_url('twitter') }}"  class="ingresar follow fontsforweb_fontid_1416"><p>INGRESAR CON TWITTER</p></a>
 	    		</div>
 	    		{% endif %}
