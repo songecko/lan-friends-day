@@ -29,7 +29,7 @@
 	    		{% if app.user  %}
 	    		
 	    		<div class="login">
-	    			<img src="{{ asset('bundles/odiseolan/images/avatar.png') }}" />
+	    			<img src="{{ app.user.twitterProfileImageUrl }}" />
 	    			<div class="user">
 	    				<p class="welcome">Bienvenido</p><p class="username">{{ app.user.userName }}</p>
 	    			</div>
