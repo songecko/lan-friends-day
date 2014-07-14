@@ -39,6 +39,9 @@ header .login{
 header a.ingresar{
 	color: #FFFFFF;
 }
+header a.ingresar p{
+	padding-left: 15px;;
+}
 header a img{
 	padding-right: 8px;
 }
@@ -198,14 +201,14 @@ footer p a{
 .cuerpo .signinTwitter { margin-left: 445px; margin-top: 167px;  display:block;}
 
 .cuerpo .signinTwitter .follow {
-	background: #0090e2 url("/lan/web/bundles/odiseolan/images/twitter.png") no-repeat 2% 57%;
+	background: #0090e2 url("/lan/web/bundles/odiseolan/images/twitter.png") no-repeat 5% 57%;
 	height: 40px; color: #FFFFFF; 
 	float:left;
 	width: 220px;
 }
 
 .cuerpo .signinTwitter .ingresar{
-	padding-left: 33px;
+	padding-left: 42px;
 }
 
 .cuerpo .signinTwitter p{
