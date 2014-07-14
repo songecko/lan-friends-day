@@ -190,7 +190,7 @@ footer p a{
 }
 
 .cuerpo .form .formBottom .follow { 
-	background: #0090e2 url("/lan/web/bundles/odiseolan/images/twitter.png") no-repeat 10% 57%;
+	background: #0090e2 url("../images/twitter.png") no-repeat 10% 57%;
 	padding-left: 15px;
 }
 
@@ -201,7 +201,7 @@ footer p a{
 .cuerpo .signinTwitter { margin-left: 445px; margin-top: 167px;  display:block;}
 
 .cuerpo .signinTwitter .follow {
-	background: #0090e2 url("/lan/web/bundles/odiseolan/images/twitter.png") no-repeat 5% 57%;
+	background: #0090e2 url("../images/twitter.png") no-repeat 5% 57%;
 	height: 40px; color: #FFFFFF; 
 	float:left;
 	width: 220px;
