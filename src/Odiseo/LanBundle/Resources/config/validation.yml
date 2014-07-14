@@ -1,0 +1,26 @@
+Odiseo\LanBundle\Entity\User:
+    properties:
+        fullName:
+             - NotBlank: 
+                message: Nombre y apellido no puede estar vacio.
+        dni:
+             - NotBlank: 
+                message: Dni no puede estar vacio.
+        edad:
+             - NotBlank: 
+                message: Edad no puede estar vacio.
+        telefono:
+             - NotBlank: 
+                message: Teléfono no puede estar vacio.
+        nacionalidad:
+             - NotBlank: 
+                message: Nacionalidad no puede estar vacio.
+        mail:
+             - NotBlank: 
+                message: Ingrese un correo electrónico.
+             - Email:
+                message: El email "{{ value }}" no es un email válido.
+                checkMX: true                                                                               
+             
+                
+                

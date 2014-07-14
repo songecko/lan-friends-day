@@ -29,12 +29,15 @@
 	    		{% if app.user  %}
 	    		
 	    		<div class="login">
-	    			<a href="#"  class="follow fontsforweb_fontid_1416 avatar"><img src="{{ app.user.twitterProfileImageUrl }}" /><p class="welcome">Bienvenido</p><p class="user">{{ app.user.userName }}</p></a>
+	    			<img src="{{ app.user.twitterProfileImageUrl }}" />
+	    			<div class="user">
+	    				<p class="welcome">Bienvenido</p><p class="username">{{ app.user.userName }}</p>
+	    			</div>
 	    		</div>
 	    			    	
 	    		{% else %}
 	    		
-	    		<div class="login">
+	    		<div class="singin">
 	    			<a href="{{ hwi_oauth_login_url('twitter') }}"  class="ingresar follow fontsforweb_fontid_1416"><p>INGRESAR CON TWITTER</p></a>
 	    		</div>
 	    		{% endif %}
@@ -43,6 +46,18 @@
 			{% block content %}
 			<section></section>
 			{% endblock %}
+				<div class="modal fade" id="alertModal">
+		  			<div class="modal-dialog">
+		    			<div class="modal-content">
+		      				<div class="modal-header">
+		      					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		      				</div>
+		      				<div class="modal-body" id='modal-body'>
+		        				<p class="message"></p>
+		      				</div>
+		    			</div>
+		  			</div>
+				</div>
 			<footer>
 				  <img src="{{ asset('bundles/odiseolan/images/footer-lan.png') }}" />
 				  <p>Promoción válida en Argentina desde el 01.04.2014 hasta el 31.05.2014. Ver bases y condiciones en <a>www.lan.com.ar</a></p>
