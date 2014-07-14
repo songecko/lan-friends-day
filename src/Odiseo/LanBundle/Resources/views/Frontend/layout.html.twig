@@ -28,13 +28,16 @@
 	    		
 	    		{% if app.user  %}
 	    		
+	    		<div class="login">
+	    			<a href="#"  class="follow fontsforweb_fontid_1416 avatar"><img src="{{ asset('bundles/odiseolan/images/avatar.png') }}" /><p class="welcome">Bienvenido</p><p class="user">{{ app.user.userName }}</p></a>
+	    		</div>
 	    		
-	    		<a href="#"  class="follow fontsforweb_fontid_1416"><img src="{{ app.user.profilePicture }}" />{{ app.user.userName }}</a>
 	    	
 	    		{% else %}
 	    		
-	    		<a href="{{ hwi_oauth_login_url('twitter') }}"  class="follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />INGRESAR CON TWITTER</a>
-	    		
+	    		<div class="login">
+	    			<a href="{{ hwi_oauth_login_url('twitter') }}"  class="ingresar follow fontsforweb_fontid_1416"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}" />INGRESAR CON TWITTER</a>
+	    		</div>
 	    		{% endif %}
 	    	
 	    	</header>

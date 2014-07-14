@@ -29,17 +29,34 @@ h1{
 header{
 	background:  url(../images/header.jpg) no-repeat; height: 83px;
 }
-header a{
-	background-color: #0090e2;
+header .login{
 	margin-left: 909px;
-	margin-top: 20px;
+	padding-top: 12px;
 	font-size: 14px;
-	color: #FFFFFF;	
-	position: absolute;
+	color: #FFFFFF;
+	position: relative;
+}
+header a.ingresar{
+	color: #FFFFFF;
 }
 header a img{
 	padding-right: 8px;
 }
+header p.welcome{ 
+	font-size: 14px;
+	color: #0159a9;
+	position: absolute;
+	top: 20px;
+	left: 60px;
+}
+header p.user {
+	position: absolute;
+	top: 36px;
+	left: 60px;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+
 footer{
 	background-color: #FFFFFF;
 	height: 83px;
@@ -169,7 +186,10 @@ footer p a{
 	color: #FFFFFF;
 }
 
-.cuerpo .form .formBottom .follow { background-color: #0090e2;}
+.cuerpo .form .formBottom .follow { 
+	background: #0090e2 url("/lan/web/bundles/odiseolan/images/twitter.png") no-repeat 10% 57%;
+	padding-left: 15px;
+}
 
 .cuerpo .form .formBottom .follow img { padding-right: 6px; }
 
@@ -177,7 +197,16 @@ footer p a{
 
 .cuerpo .signinTwitter { margin-left: 445px; margin-top: 167px;  display:block;}
 
-.cuerpo .signinTwitter .follow { background-color: #0090e2; height: 40px; color: #FFFFFF; float:left; width: 220px;}
+.cuerpo .signinTwitter .follow {
+	background: #0090e2 url("/lan/web/bundles/odiseolan/images/twitter.png") no-repeat 2% 57%;
+	height: 40px; color: #FFFFFF; 
+	float:left;
+	width: 220px;
+}
+
+.cuerpo .signinTwitter .ingresar{
+	padding-left: 33px;
+}
 
 .cuerpo .signinTwitter p{
 	float: left;
