@@ -4,7 +4,8 @@ namespace Odiseo\LanBundle\Security\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\Security\Core\User\UserInterface;
- 
+use TwitterAPIExchange;
+
 class TwitterUserProvider extends BaseClass
 {
     /**
@@ -42,7 +43,7 @@ class TwitterUserProvider extends BaseClass
     {
         $username = $response->getUsername();
         $attr = $response->getResponse();
-        
+        //ldd($response);
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
         
         //when the user is registrating
@@ -58,6 +59,32 @@ class TwitterUserProvider extends BaseClass
             $user = $this->userManager->createUser();
             $user->$setter_id($username);
             $user->$setter_token($response->getAccessToken());
+            
+            echo $response->getAccessToken();
+            echo '<br><br>';
+            echo $response->getTokenSecret();
+            $settings = array(
+            		'oauth_access_token' => $response->getAccessToken(),
+            		'oauth_access_token_secret' => $response->getTokenSecret(),
+            		'consumer_key' => "DjLQ9OM87GAPn6eTobxEnWAxz",
+            		'consumer_secret' => "2bCmeQF6SPI5HAB2XpNVzx47pg2DT8cpATiJtkSMePQ8XOeWOw"
+            );
+            
+            //$url = 'https://api.twitter.com/1.1/friendships/lookup.json';
+            $url = 'https://api.twitter.com/1.1/statuses/update.json';
+            //$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+            //$getfield = '?screen_name=songecko';
+            $getfield = '?status=prueba';
+            //$requestMethod = 'GET';
+            $requestMethod = 'POST';
+            
+            $twitter = new TwitterAPIExchange($settings);
+            
+            $res =  $twitter
+            ->buildOauth($url, $requestMethod)
+            ->performRequest();
+            echo($res);die;
+            
             //I have set all requested data with the user's username
             //modify here with relevant data
             $user->setUsername($twitterName);
