@@ -70,29 +70,24 @@ class MainController extends Controller {
 	
 	public function sendTweetAction(Request $request)
 	{
-		//ldd($_SESSION['oauth_token']);
-	//	$twitterClient = $this->container->get('guzzle.twitter.client');
-		//$status = $twitterClient->get('statuses/user_timeline.json')->send()->getBody();
 		$settings = array(
-    		'oauth_access_token' => "1464708482-VKFrC8zo43dCBP17mj2LhTQdM5IE6Q0R7H4QKFf",
-    		'oauth_access_token_secret' => "hHpRqUrtcmTZQWS9mttU4Qh3p6jBMordflVQ2HYSHJqNX",
-    		'consumer_key' => "QJwsir2Mm2J1EFsP9F5NPXSGV",
-    		'consumer_secret' => "PzqTb6Wix3wGeGLgPf2ghWL7hpOxIFtNM2XNS7rFrlxgHpSDcR"
+    		'oauth_access_token' => "16963100-tcoizpaLQGm4KygHh6r9bbIZAcxbQSgWU7xa9SAnD",
+    		'oauth_access_token_secret' => "gXxufSn2m9B9SsWrcu52pGg3drnj6zIkYMYt06A1dGYJ0",
+    		'consumer_key' => "DjLQ9OM87GAPn6eTobxEnWAxz",
+    		'consumer_secret' => "2bCmeQF6SPI5HAB2XpNVzx47pg2DT8cpATiJtkSMePQ8XOeWOw"
 		);
 		
-		//$url = 'https://api.twitter.com/1.1/friendships/lookup.json';
-		$url = 'https://api.twitter.com/1.1/friendships/statuses/update.json';
-		//$getfield = '?screen_name=songecko';
-		$getfield = '?status=prueba';
-		//$requestMethod = 'GET';
+		$url = 'https://api.twitter.com/1.1/statuses/update.json';
 		$requestMethod = 'POST';
 		
 		$twitter = new TwitterAPIExchange($settings);
 		
-		$res =  $twitter->setGetfield($getfield)
-		->buildOauth($url, $requestMethod)
-		->performRequest();
+		$res =  $twitter->setPostfields(array('status' => 'nuevo post'))
+			->buildOauth($url, $requestMethod)
+			->performRequest();
+		
 		ldd($res);
+		
 		return $this->render('OdiseoLanBundle:Frontend/Main:test.html.twig', array(
 				'status' => $status
 		));
