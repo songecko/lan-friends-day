@@ -62,7 +62,7 @@ class MainController extends Controller {
 		}
 
 		$this->saveUser($register);
-		$this->get('lan.send.mailer')->SendCampaignMail($propertyUser);
+		$this->get('lan.send.mailer')->SendRegisterMail($propertyUser);
 		$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];
 			
 			return new JsonResponse($data);
@@ -115,9 +115,5 @@ class MainController extends Controller {
 		$userRecord->setTelefono ( $register ['telefono'] );
 		$userRecord->setNacionalidad ( $register ['nacionalidad'] );
 		$userRecord->setMail ( $register ['mail'] );
-	}
-	
-	public function sendMailerAction(Request $request){
-		$this->get('lan.send.mailer')->SendRegisterMail();
 	}
 }
