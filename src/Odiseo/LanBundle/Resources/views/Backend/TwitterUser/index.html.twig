@@ -5,20 +5,17 @@
 {% from 'OdiseoLanBundle:Backend/TwitterUser:macros.html.twig' import list  %}
 
 {% block section_title %}
-<h1>Twitters</h1>
+<h1>Tweets</h1>
 {% endblock %}
 
 {% block breadcrums %}
 <ol class="breadcrumb">
 	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	<li class="active">Twitters</li>
+	<li class="active">Tweets</li>
 </ol>
 {% endblock %}
 
 {% block content %}
-<h2 class="page-header">
-	{{ buttons.create(path('odiseo_lan_twitteruser_create'), 'Nuevo') }}
-</h2>
 
 {{ list(twitterusers)  }}
 {{ pagination(twitterusers) }}

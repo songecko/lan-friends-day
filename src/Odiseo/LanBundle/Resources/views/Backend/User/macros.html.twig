@@ -12,7 +12,12 @@
 				<th>ID</th>
 				<th>Nombre y Apellido</th>
 				<th>Nombre Usuario</th>
+				<th>Dni</th>
+				<th>Edad</th>
+				<th>Telefono</th>
+				<th>Nacionalidad</th>
 				<th>Email</th>
+				<th>Tweets</th>
 				<th></th>
 			</tr>
 			{% for user in users %}
@@ -20,10 +25,14 @@
 				<td>{{ user.id }}</td>
 				<td>{{ user.fullname }}</td>
 				<td>{{ user.username }}</td>
-				<td>{{ user.email }}</td>
+				<td>{{ user.dni }}</td>
+				<td>{{ user.edad }}</td>
+				<td>{{ user.telefono }}</td>
+				<td>{{ user.nacionalidad }}</td>
+				<td>{{ user.mail }}</td>
+				<td><a href="{{ path('odiseo_lan_twitteruser_index_by_user', {'user_id': user.id} )}}">{{ user.twitters|length }}</a></td>
 				<td>
 					<div class="pull-right">
-	                    {{ buttons.edit(path('odiseo_lan_user_update', {'id': user.id})) }}
 	                    {{ buttons.delete(path('odiseo_lan_user_delete', {'id': user.id})) }}
 	                </div>
 				</td>

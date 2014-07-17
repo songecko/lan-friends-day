@@ -11,7 +11,8 @@
 			<tr>
 				<th>ID</th>
 				<th>Usuario</th>
-				<th>Twitter</th>
+				<th>Tweet</th>
+				<th>Creado</th>
 				<th></th>
 			</tr>
 			{% for twitteruser in twitterusers %}
@@ -19,9 +20,9 @@
 				<td>{{ twitteruser.id }}</td>
 				<td>{{ twitteruser.user.username }}</td>
 				<td>{{ twitteruser.twitter|truncate(100) }}</td>
+				<td>{{ twitteruser.createdAt|date("d-m-Y") }}</td>
 				<td>
 					<div class="pull-right">
-	                    {{ buttons.edit(path('odiseo_lan_twitteruser_update', {'id': twitteruser.id})) }}
 	                    {{ buttons.delete(path('odiseo_lan_twitteruser_delete', {'id': twitteruser.id})) }}
 	                </div>
 				</td>

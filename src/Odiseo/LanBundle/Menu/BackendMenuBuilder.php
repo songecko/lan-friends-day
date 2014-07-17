@@ -40,7 +40,7 @@ class BackendMenuBuilder
         $menu->addChild('twitteruser', array(
         		'route' => 'odiseo_lan_twitteruser_index',
         		'labelAttributes' => array('icon' => 'fa-twitter'),
-        ))->setLabel("Twitters");
+        ))->setLabel("Tweets");
         
         $menu->addChild('configuration', array(
         		'route' => 'odiseo_lan_configuration_index',

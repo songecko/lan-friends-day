@@ -3,10 +3,25 @@ odiseo_lan_twitteruser_index:
     methods: [GET]
     defaults:
         _controller: lan.controller.twitteruser:indexAction
-        _sylius:
+        _sylius:        
+            sorting:
+                createdAt: desc
             template: OdiseoLanBundle:Backend/TwitterUser:index.html.twig
             paginate: 100
-            
+
+odiseo_lan_twitteruser_index_by_user:
+    pattern: /by/{user_id}
+    methods: [GET]
+    defaults:
+        _controller: lan.controller.twitteruser:indexAction
+        _sylius:
+            criteria:
+                user: $user_id
+            sorting:
+                createdAt: desc
+            template: OdiseoLanBundle:Backend/TwitterUser:index.html.twig
+            paginate: 100
+    
 odiseo_lan_twitteruser_create:
     pattern: /new
     methods: [GET, POST]
