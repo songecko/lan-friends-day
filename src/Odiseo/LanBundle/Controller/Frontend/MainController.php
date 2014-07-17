@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Odiseo\LanBundle\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use TwitterAPIExchange;
+
 class MainController extends Controller {
 
 	
@@ -64,6 +66,31 @@ class MainController extends Controller {
 		$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];
 			
 			return new JsonResponse($data);
+	}
+	
+	public function sendTweetAction(Request $request)
+	{
+		$settings = array(
+    		'oauth_access_token' => "16963100-tcoizpaLQGm4KygHh6r9bbIZAcxbQSgWU7xa9SAnD",
+    		'oauth_access_token_secret' => "gXxufSn2m9B9SsWrcu52pGg3drnj6zIkYMYt06A1dGYJ0",
+    		'consumer_key' => "DjLQ9OM87GAPn6eTobxEnWAxz",
+    		'consumer_secret' => "2bCmeQF6SPI5HAB2XpNVzx47pg2DT8cpATiJtkSMePQ8XOeWOw"
+		);
+		
+		$url = 'https://api.twitter.com/1.1/statuses/update.json';
+		$requestMethod = 'POST';
+		
+		$twitter = new TwitterAPIExchange($settings);
+		
+		$res =  $twitter->setPostfields(array('status' => 'nuevo post'))
+			->buildOauth($url, $requestMethod)
+			->performRequest();
+		
+		ldd($res);
+		
+		return $this->render('OdiseoLanBundle:Frontend/Main:test.html.twig', array(
+				'status' => $status
+		));
 	}
 	
 	private function saveUser($register){
