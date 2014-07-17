@@ -34,3 +34,8 @@ services:
         class: Odiseo\LanBundle\Form\Type\ConfigurationType
         tags:
             - { name: form.type, alias: lan_configuration }
+
+    lan.send.mailer:
+        class: Odiseo\LanBundle\Mailer\SendMailer
+        arguments: ["@service_container"]
+

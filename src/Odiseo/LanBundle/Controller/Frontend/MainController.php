@@ -24,7 +24,7 @@ class MainController extends Controller {
 		} else
 		 {
 		 	$userRecord = $this->retrieveUserFromDb( $user->getTwitterId ());
-			if ( $userRecord->getDni() != null) 
+			if ( $userRecord->getDni() == null) 
 			{	
 					return $this->render ( 'OdiseoLanBundle:Frontend/Main:registerForm.html.twig',	
 						array ( 'fullName' => $userRecord->getFullName(),
@@ -62,7 +62,7 @@ class MainController extends Controller {
 		}
 
 		$this->saveUser($register);
-		
+		$this->get('lan.send.mailer')->SendCampaignMail($propertyUser);
 		$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];
 			
 			return new JsonResponse($data);
@@ -117,5 +117,7 @@ class MainController extends Controller {
 		$userRecord->setMail ( $register ['mail'] );
 	}
 	
-	
+	public function sendMailerAction(Request $request){
+		$this->get('lan.send.mailer')->SendRegisterMail();
+	}
 }
