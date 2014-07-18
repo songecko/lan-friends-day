@@ -19,6 +19,32 @@ class MainController extends Controller
 		return $this->render('OdiseoLanBundle:Frontend/Main:countdown.html.twig');
 	}
 	
+	public function renderContentAction(Request $request) {
+	
+		$user = $this->getUser();
+		if ($user == null) 
+		{
+			return $this->render('OdiseoLanBundle:Frontend/Main:participate.html.twig');
+		} else
+		{
+			$userRecord = $this->retrieveUserFromDb($user->getTwitterId());
+			if ($userRecord->getDni() == null)
+			{
+				return $this->render ( 'OdiseoLanBundle:Frontend/Main:registerForm.html.twig',
+						array ( 'fullName' => $userRecord->getFullName(),
+								'dni' =>  $userRecord->getDni(),
+								'edad' => $userRecord->getEdad(),
+								'telefono' => $userRecord->getTelefono(),
+								'nacionalidad' =>$userRecord->getNacionalidad(),
+								'email' => $userRecord->getMail() ) );
+			}
+			else 
+			{
+				return $this->render ( 'OdiseoLanBundle:Frontend/Main:registerForm.html.twig');
+			}
+		}
+	}
+	
 	public function registerAction(Request $request) 
 	{
 		$register = $request->get('register');
