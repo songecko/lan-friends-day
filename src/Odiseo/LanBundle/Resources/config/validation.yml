@@ -9,9 +9,6 @@ Odiseo\LanBundle\Entity\User:
         edad:
              - NotBlank: 
                 message: Edad no puede estar vacio.
-        telefono:
-             - NotBlank: 
-                message: Teléfono no puede estar vacio.
         provincia:
              - NotBlank: 
                 message: Nacionalidad no puede estar vacio.
