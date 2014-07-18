@@ -14,7 +14,7 @@ class LoadUserData extends DataFixture
     	$userAdmin = new User();
     	$userAdmin->setUsername('admin');
     	$userAdmin->setEmail('admin@amigoslan.com');
-    	$userAdmin->setPlainPassword('c4r4mbol4-l4n');
+    	$userAdmin->setPlainPassword('123456');
     	$userAdmin->setEnabled(true);
     	$userAdmin->setRoles(array('ROLE_ADMIN'));
     	$manager->persist($userAdmin);
