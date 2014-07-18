@@ -9,8 +9,6 @@ class SendMailer{
 	
 	private $message;
 	private $container;
-	private $fullname;
-	private $email;
 	
 	public function __construct(Container $container){
 		$this->message = \Swift_Message::newInstance();
@@ -25,7 +23,7 @@ class SendMailer{
 		
 		$this->message
 		->setSubject($fullname.', ya estás registrado en la app del Mes del Amigo LAN!')
-		->setFrom(array('Amigos Lan' => 'noreply@amigoslan.com'))
+		->setFrom(array('noreply@amigoslan.com' => 'Amigos Lan'))
 		->setTo($email)
 		->setBody(
 			$this->container->get('templating')->render($view, array('fullname' => $fullname)),
