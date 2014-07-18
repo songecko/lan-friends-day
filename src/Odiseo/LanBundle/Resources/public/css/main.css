@@ -64,6 +64,10 @@ h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spac
 .timer .col-xs-3 { text-align:center; margin:0; padding:0 3px; color:#181819;font-size:13px; letter-spacing:-1px; font-weight:600; text-transform:uppercase;}
 .timer span { font-size:50px; font-weight:900; color:#fff; background:url(../images/bg_timer.gif) repeat-x; line-height:104px;height:104px; display:block; border-radius:3px; text-align:center;box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); }
 
+.inicio .container a.loginButton {
+	margin-top: 20px;
+}
+
 .pasos  { max-width:500px; margin:0px auto 30px auto; background:#fff; font-size:10px; color:#254e78; text-transform: uppercase; text-align:center; font-weight:500; padding:10px 10px 20px 10px;box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.17) ,  0 5px 10px rgba(0, 0, 0, 0.17);}
 .pasos .ico { padding:15px 0}
 .pasos .col-xs-4 {}
