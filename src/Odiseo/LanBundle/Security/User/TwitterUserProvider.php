@@ -61,7 +61,7 @@ class TwitterUserProvider extends BaseClass
             //I have set all requested data with the user's username
             //modify here with relevant data
             $user->setUsername($twitterName);
-            $user->setEmail('none@email.com');
+            $user->setEmail($username.'@email.com');
             $user->setPassword(md5(time()));
             $user->setEnabled(true);
             $user->setTwitterProfileImageUrl($twitterProfileImageUrl);
