@@ -56,8 +56,8 @@ Odiseo\LanBundle\Entity\User:
             type: string
             length: 255
             nullable: true
-        nacionalidad:
-            column: nacionalidad
+        provincia:
+            column: provincia
             type: string
             length: 255
             nullable: true
@@ -65,7 +65,11 @@ Odiseo\LanBundle\Entity\User:
             column: mail
             type: string
             length: 255
-            nullable: true                
+            nullable: true     
+        acceptNewsletter:
+            column: acceptNewsletter
+            type: boolean
+            default: false 
          
     oneToMany:
         twitters:

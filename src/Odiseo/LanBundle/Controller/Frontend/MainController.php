@@ -24,14 +24,14 @@ class MainController extends Controller {
 		} else
 		 {
 		 	$userRecord = $this->retrieveUserFromDb( $user->getTwitterId ());
-			if ( $userRecord->getDni() == null) 
+			if ( $userRecord->getDni() != null) 
 			{	
 					return $this->render ( 'OdiseoLanBundle:Frontend/Main:registerForm.html.twig',	
 						array ( 'fullName' => $userRecord->getFullName(),
 					    'dni' =>  $userRecord->getDni(),
 					    'edad' => $userRecord->getEdad(),
 					    'telefono' => $userRecord->getTelefono(),
-					   'nacionalidad' =>$userRecord->getNacionalidad(),
+					   'provincia' =>$userRecord->getProvincia(),
 					    'email' => $userRecord->getMail() ) );
 			} 
 			else {
@@ -113,7 +113,7 @@ class MainController extends Controller {
 		$userRecord->setDni ( $register ['dni'] );
 		$userRecord->setEdad ( $register ['edad'] );
 		$userRecord->setTelefono ( $register ['telefono'] );
-		$userRecord->setNacionalidad ( $register ['nacionalidad'] );
+		$userRecord->setNacionalidad ( $register ['provincia'] );
 		$userRecord->setMail ( $register ['mail'] );
 	}
 }
