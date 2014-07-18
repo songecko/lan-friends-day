@@ -18,6 +18,7 @@
 				<th>Provincia</th>
 				<th>Email</th>
 				<th>Tweets</th>
+				<th>Newsletter?</th>
 				<th></th>
 			</tr>
 			{% for user in users %}
@@ -30,7 +31,14 @@
 				<td>{{ user.telefono }}</td>
 				<td>{{ user.provincia }}</td>
 				<td>{{ user.mail }}</td>
-				<td><a href="{{ path('odiseo_lan_twitteruser_index_by_user', {'user_id': user.id} )}}">{{ user.twitters|length }}</a></td>
+				<td><a href="{{ path('odiseo_lan_twitteruser_index_by_user', {'user_id': user.id} )}}">Ver Tweets ({{ user.twitters|length }})</a></td>
+				<td>
+					{% if user.acceptNewsletter %}
+					<span class="label label-success">Sí</span>
+					{% else %}
+					<span class="label label-danger">No</span>
+					{% endif %}
+				</td>
 				<td>
 					<div class="pull-right">
 	                    {{ buttons.delete(path('odiseo_lan_user_delete', {'id': user.id})) }}
