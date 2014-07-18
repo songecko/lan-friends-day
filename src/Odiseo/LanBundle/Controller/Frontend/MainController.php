@@ -14,6 +14,11 @@ class MainController extends Controller
 		return $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig');
 	}
 
+	public function internoAction()
+	{
+		return $this->render('OdiseoLanBundle:Frontend/Main:interno.html.twig');
+	}
+	
 	public function countdownAction()
 	{
 		return $this->render('OdiseoLanBundle:Frontend/Main:countdown.html.twig');
