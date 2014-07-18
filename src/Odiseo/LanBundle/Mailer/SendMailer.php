@@ -25,7 +25,7 @@ class SendMailer{
 		
 		$this->message
 		->setSubject($fullname.', ya estás registrado en la app del Mes del Amigo LAN!')
-		->setFrom('noreply@amigoslan.com')
+		->setFrom(array('Amigos Lan' => 'noreply@amigoslan.com'))
 		->setTo($email)
 		->setBody(
 			$this->container->get('templating')->render($view, array('fullname' => $fullname)),
