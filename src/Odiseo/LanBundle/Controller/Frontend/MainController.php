@@ -92,6 +92,6 @@ class MainController extends Controller
 		$userRecord->setTelefono($register['telefono']);
 		$userRecord->setProvincia($register['provincia']);
 		$userRecord->setMail($register['mail']);
-		$userRecord->setAcceptNewsletter($register['accept_newsletter']);
+		$userRecord->setAcceptNewsletter(isset($register['accept_newsletter'])?true:false);
 	}
 }
