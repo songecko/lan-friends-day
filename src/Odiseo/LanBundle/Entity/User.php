@@ -23,8 +23,9 @@ class User extends BaseUser
    	protected $dni;
    	protected $edad;
    	protected $telefono;
-   	protected $nacionalidad;
+   	protected $provincia;
    	protected $mail;
+   	protected $acceptNewsletter;
    	
    	protected $profilePicture;
     
@@ -116,6 +117,16 @@ class User extends BaseUser
     {
     	return $this->getUsername();
     }
+    
+    public function getCanonicalName()
+    {
+    	return $this->getFullName()?$this->getFullName():$this->getUsername();
+    }
+    
+    public function isRegistered()
+    {
+    	return $this->getDni()?true:false;
+    }
 	
 	public function getFullName() {
 		return $this->fullName;
@@ -146,11 +157,11 @@ class User extends BaseUser
 		$this->telefono = $telefono;
 		return $this;
 	}
-	public function getNacionalidad() {
-		return $this->nacionalidad;
+	public function getProvincia() {
+		return $this->provincia;
 	}
-	public function setNacionalidad($nacionalidad) {
-		$this->nacionalidad = $nacionalidad;
+	public function setProvincia($provincia) {
+		$this->provincia = $provincia;
 		return $this;
 	}
 	public function getMail() {
@@ -160,5 +171,11 @@ class User extends BaseUser
 		$this->mail = $mail;
 		return $this;
 	}	
-	
+	public function getAcceptNewsletter() {
+		return $this->acceptNewsletter;
+	}
+	public function setAcceptNewsletter($acceptNewsletter) {
+		$this->acceptNewsletter = $acceptNewsletter;
+		return $this;
+	}
 }
