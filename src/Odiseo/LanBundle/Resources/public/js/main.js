@@ -1,4 +1,3 @@
-
 function showAlertModal( message)
 {
 	$('#modal-body').html('');
@@ -6,7 +5,8 @@ function showAlertModal( message)
 	$('#alertModal').modal('show');
 }
 
-function addMessagesAndShowAlertModal( messages ){
+function addMessagesAndShowAlertModal( messages )
+{
 	$('#modal-body').html('');
 	var ul  = $('<ul></ul>');
 	for (var i = 0 ; i <  messages.length ; i++)
@@ -18,8 +18,6 @@ function addMessagesAndShowAlertModal( messages ){
 	$('#modal-body').append(ul);
 	$('#alertModal').modal('show');
 }
-
-
 
 function sendForm( )
 {
@@ -83,8 +81,7 @@ $(document).ready(function()
 	$("#register-form").validate({
 		invalidHandler: function(event, validator)
 		{
-			showAlertModal("Debes completar correctamente el formulario.");
-		
+			//showAlertModal("Debes completar correctamente el formulario.");		
 		},		
 		errorPlacement: function(error, element) 
 		{
@@ -99,8 +96,8 @@ $(document).ready(function()
 		},
 		submitHandler: function(form) 
 		{
-			sendForm();
-			
+			//sendForm();
+			form.submit();
 		}
 	});
 	

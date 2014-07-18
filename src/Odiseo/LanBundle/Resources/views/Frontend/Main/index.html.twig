@@ -2,60 +2,53 @@
 
 {% block content %}
 <div class="container">
-	{{ render(controller('OdiseoLanBundle:Frontend/Main:renderContent')) }}
 	<div class="row">
 		<div class="col-xs-12">
-			{% if app.user.isRegistered %}
-			<h1>YA ESTÁS REGISTRADO</h1> 
+			{% if app.user and app.user.isRegistered %}
+			<h1>¡YA ESTÁS REGISTRADO!</h1> 
       		<h2>PRÓXIMO VUELO EN</h2>
 			{% else %}
-			<h1>PRÓXIMO VUELO EN:</h1>
+			<h1>PARTICIPÁ POR UN VIAJE A BRASIL PARA VOS Y 3 AMIGOS</h1>
 			{% endif %}
 			
-			<div class="row countdown" data-end-date="July 19, 2014 15:03:25"> 
-				<!-- timer-->
-				<div class=" timer clearfix">
-					<div class="col-xs-3 day"> dias<span class="number">12</span> </div>
-					<div class="col-xs-3 hour"> horas<span class="number">08</span> </div>
-					<div class="col-xs-3 minute"> min.<span class="number">35</span> </div>
-				    <div class="col-xs-3 second"> seg.<span class="number">22</span> </div>
-				</div>
-			</div>
+			{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
 		
 			{% if not app.user or not app.user.isRegistered  %}
-      		<h2>GANATE UN VIAJE A BRASIL CON AMIGOS</h2>
-      		<!-- pasos -->
+      		<!-- <h2>GANATE UN VIAJE A BRASIL CON AMIGOS</h2> -->
+      		<!-- pasos 
 			<div class="pasos clearfix">
 				<div class="col-xs-4">
-					<div class="ico"><img src="{{ asset('images/ico1.png') }}"/></div>
+					<div class="ico"><img src="{{ asset('bundles/odiseolan/images/ico1.png') }}"/></div>
 					twiteá mencionando
 					3 amigos desde la app 
 				</div>
         		<div class="col-xs-4">
-          			<div class="ico"><img src="{{ asset('images/ico2.png') }}"/></div>
+          			<div class="ico"><img src="{{ asset('bundles/odiseolan/images/ico2.png') }}"/></div>
           			mantené tu<br>
           			avatar en el avión 
           		</div>
         		<div class="col-xs-4">
-          			<div class="ico"><img src="{{ asset('images/ico3.png') }}"/></div>
+          			<div class="ico"><img src="{{ asset('bundles/odiseolan/images/ico3.png') }}"/></div>
           			ganá 4 pasajes<br>
           			a brasil 
           		</div>
-			</div>     
+			</div>    --> 
       
-      		{% if not app.user %}
+      		{%   if not app.user %}
       		<!-- login -->
-      		<a href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter'})  }}" class="btn btn-primary">
-      			<i class="glyphicon glyphicon-ok"></i><strong>
-      			Inicia sesión con twitter </strong> y subite al avión
+      		<a href="{{ hwi_oauth_login_url('twitter') }}" class="btn btn-primary">
+      			<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
+      			<strong>Inicia sesión con twitter </strong> y subite al avión
       		</a>
-      		{% else %}
+      		{%   else %}
       		<!-- register -->
+			{{ include('OdiseoLanBundle:Frontend/Main:registerForm.html.twig') }}
+			
       		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
-      			<i class="glyphicon glyphicon-ok"></i><strong>
-      			Hacé Check In </strong> y subite al avión
+      			<i class="glyphicon glyphicon-ok"></i>
+      			<strong>Hacé Check In </strong> y subite al avión
       		</a>
-			{% endif %}
+			{%   endif %}
 			{% endif %}
       	</div>
   </div>

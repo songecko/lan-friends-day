@@ -12,7 +12,7 @@ Odiseo\LanBundle\Entity\User:
         telefono:
              - NotBlank: 
                 message: Teléfono no puede estar vacio.
-        nacionalidad:
+        provincia:
              - NotBlank: 
                 message: Nacionalidad no puede estar vacio.
         mail:
@@ -20,7 +20,4 @@ Odiseo\LanBundle\Entity\User:
                 message: Ingrese un correo electrónico.
              - Email:
                 message: El email "{{ value }}" no es un email válido.
-                checkMX: true                                                                               
-             
-                
-                
+                checkMX: true        

@@ -15,28 +15,27 @@ class SendMailer{
 	public function __construct(Container $container){
 		$this->message = \Swift_Message::newInstance();
 		$this->container = $container;
-		
 	}
 
-	public function SendRegisterMail(User $user)
+	public function sendRegisterMail(User $user)
 	{
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
-		
+		$view = 'OdiseoLanBundle:Frontend/Mailer:registerEmail.html.twig';
 		
 		$this->message
-		->setSubject('Lan Amigos')
-		->setFrom('prueba@test.com')
+		->setSubject($fullname.', ya estás registrado en la app del Mes del Amigo LAN!')
+		->setFrom('noreply@amigoslan.com')
 		->setTo($email)
 		->setBody(
-				'Hola '.$fullname.', te has registrado satisfactoriamente.'				
-		)
-		;
-		$this->container->get('mailer')->send($this->message);
+			$this->container->get('templating')->render($view, array('fullname' => $fullname)),
+			'text/html'
+		);
 		
+		$this->container->get('mailer')->send($this->message);
 	}
 	
-	public function SendCampaignMail(User $user)
+	public function sendCampaignMail(User $user)
 	{
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
@@ -47,10 +46,10 @@ class SendMailer{
 		->setFrom('prueba@test.com')
 		->setTo($email)
 		->setBody(
-				$this->container->get('templating')->render($view, array('fullname' => $fullname)),'text/html'
-		)
-		;
+			$this->container->get('templating')->render($view, array('fullname' => $fullname)),
+			'text/html'
+		);
+		
 		$this->container->get('mailer')->send($this->message);
-	
 	}
 }

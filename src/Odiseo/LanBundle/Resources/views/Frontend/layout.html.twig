@@ -27,19 +27,22 @@
       	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     	<![endif]-->
     </head>
-    <body class="avion">
+    <body class="inicio">
     	<!-- Header -->
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
-				<div class="logo"><a href="{{ path('odiseo_lan_frontend_homepage') }}"><img src="{{ asset('images/lan.png') }}" alt="LAN Argentina"/></a></div>
-				<a href="#" class="twitter"></a>
+				<div class="logo"><a href="{{ path('odiseo_lan_frontend_homepage') }}"><img src="{{ asset('bundles/odiseolan/images/lan.png') }}" alt="LAN Argentina"/></a></div>
 				{% if app.user %}
+				<!-- <a href="#" class="twitter"></a> -->
 				<div class="user">
 					<span>Bienvenido, <strong>{{ app.user.canonicalName }}</strong></span> 
 					<img class="img-circle" src="{{ app.user.twitterProfileImageUrl }}" />
 				</div>
 				{% else %}
-				<a href="{{ hwi_oauth_login_url('twitter') }}"  class="ingresar follow fontsforweb_fontid_1416"><p>INGRESAR CON TWITTER</p></a>
+				<a href="{{ hwi_oauth_login_url('twitter') }}" class="btn btn-primary signinButton">
+		      		<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
+      				<strong>Iniciar sesión con twitter</strong>
+      			</a>
 				{% endif %}
 			</div>
 		</nav>
@@ -59,11 +62,11 @@
 		  	</div>
 		</div>
 		
-		<div class="footer"> 
+		<!-- <div class="footer"> 
 			<a href="#1">Bases y Condiciones</a> 
 			<a href="#1">Preguntas Frecuentes</a> 
 			<a href="#1">Como Funciona</a> 
-		</div>
+		</div>  -->
 		
 		<!-- javascript -->
 		{# javascripts... #}

@@ -14,6 +14,7 @@ body.inicio { background:url(../images/bg.jpg) no-repeat center center fixed ; b
   width: 800px;
   margin-left:-100px;
   margin-top:200px;
+  text-align: left;
 }
 
 .modal-content { border-radius:3px; border:none; background:#f6f5f3; }
@@ -25,6 +26,7 @@ h4.modal-title { font-size:14px;} h4.modal-title img { max-width:60px; margin-ri
 .modal-content span { font-size:10px; text-transform:uppercase; font-weight:500; color:#9b9b99; display:block}
 .modal-content  .col-xs-12 , .modal-content .col-sm-4 {  padding:0 5px;}
 .form-control { border-radius:0px; font-size:13px; padding:6px; border: solid 1px #ebebeb;box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.12) ;}
+.form-control.error { border: solid 1px #EC1515; }
 .info { background:#e3e3e3; border:solid 1px #c6c6c6; border-radius:3px;}
 
 .modal-footer { border:none;}
@@ -46,13 +48,14 @@ h4.modal-title { font-size:14px;} h4.modal-title img { max-width:60px; margin-ri
 .navbar { background:#374a76; height:70px; line-height:70px; padding:0; margin:0; border-radius:0; border:none;}
 .navbar .logo { float:left; }
 .navbar .container-fluid { padding:0 0 0 20px; margin:0;}
-.navbar .user { color:#fff; font-size:12px; font-size:12px; float:right}
+.navbar .user { color:#fff; font-size:12px; font-size:12px; float:right; margin-right: 20px;}
 .navbar .user img { max-width:45px; border:solid 2px #fff; margin-left:10px;}
-.navbar .twitter { float: right; width:70px; height:70px; background:#4a83a0 url(../images/twitter.gif) no-repeat center center; margin-left:20px;}
+.navbar .twitter { float: right; width:70px; height:70px; background:#4a83a0 url(../images/twitter.gif) no-repeat center center;}
+.navbar .signinButton { padding: 10px 20px 10px 45px; line-height: 24px; float: right; margin: 12px; }
+.navbar .signinButton .glyphicon { margin: -3px 0 0 -30px; }
 
 
-
-h1 { color:#22486e;font-size:60px;font-family: 'Candal', sans-serif; letter-spacing:-3px; text-transform:uppercase; margin-bottom:40px;}
+h1 { color:#22486e;font-size:46px;font-family: 'Candal', sans-serif; letter-spacing:-3px; text-transform:uppercase; margin-bottom:40px;}
 h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spacing:-1px;  text-transform:uppercase; margin-bottom:30px;}
 
 

@@ -9,64 +9,45 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MainController extends Controller 
 {	
-	public function indexAction() 
+	public function indexAction(Request $request) 
 	{
 		return $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig');
 	}
-	
-	public function renderContentAction(Request $request) 
-	{	
-		$user = $this->getUser();
-		
-		if ($user == null) 
-		{
-			return $this->render('OdiseoLanBundle:Frontend/Main:participate.html.twig');
-		} else
-		{
-		 	$userRecord = $this->retrieveUserFromDb($user->getTwitterId());
-			if ( $userRecord->getDni() != null) 
-			{	
-					return $this->render('OdiseoLanBundle:Frontend/Main:registerForm.html.twig', array( 
-						'fullName' => $userRecord->getFullName(),
-					    'dni' =>  $userRecord->getDni(),
-					    'edad' => $userRecord->getEdad(),
-					    'telefono' => $userRecord->getTelefono(),
-					   	'provincia' =>$userRecord->getProvincia(),
-					    'email' => $userRecord->getMail()
-					));
-			} 
-			else 
-			{
-				return $this->render ( 'OdiseoLanBundle:Frontend/Main:registerForm.html.twig');
-			}
-		}
+
+	public function countdownAction()
+	{
+		return $this->render('OdiseoLanBundle:Frontend/Main:countdown.html.twig');
 	}
-	
 	
 	public function registerAction(Request $request) 
 	{
 		$register = $request->get('register');
-		$propertyUser = new User();
-		$this->setUserProperties($propertyUser, $register);
+		
+		$user = $this->getUser();
+		$this->setUserProperties($user, $register);
+		
 		$validator = $this->get('validator');
-		$errors = $validator->validate($propertyUser);
+		$errors = $validator->validate($user);
 		
 		if (count($errors) > 0) 
 		{
 			$errorsMessages = array();
-			foreach ( $errors as  $error )
+			foreach ($errors as  $error)
 			{
-				array_push($errorsMessages,	$error->getMessage() );
+				array_push($errorsMessages,	$error->getMessage());
 			}
-			$data = ['onError' => 'true', 'errors' => $errorsMessages];
-			return new JsonResponse($data);
+			
+			//$data = ['onError' => 'true', 'errors' => $errorsMessages];			
+			//return new JsonResponse($data);		
+			return $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage'));
 		}
 
-		$this->saveUser($register);
-		$this->get('lan.send.mailer')->SendRegisterMail($propertyUser);
-		$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];
-			
-			return new JsonResponse($data);
+		$this->getDoctrine()->getManager()->flush();
+		$this->get('lan.send.mailer')->sendRegisterMail($user);
+		
+		//$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];	
+		//return new JsonResponse($data);
+		return $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage'));
 	}
 	
 	public function sendTweetAction(Request $request)
@@ -94,19 +75,12 @@ class MainController extends Controller
 		));
 	}
 	
-	private function saveUser($register)
-	{
-		$user = $this->getUser();
-		$userRecord = $this->retrieveUserFromDb($user->getTwitterId());
-		$this->setUserProperties($userRecord, $register);
-		$this->getDoctrine()->getManager ()->flush();
-	}
-	
 	private function retrieveUserFromDb($twitterId)
 	{
-		$em = $this->getDoctrine ()->getManager ();
-		$repository = $em->getRepository('OdiseoLanBundle:User' );
-		$userRecord = $repository->findOneBy ( array ('twitter_id' => $twitterId ) );
+		$em = $this->getDoctrine()->getManager ();
+		$repository = $em->getRepository('OdiseoLanBundle:User');
+		$userRecord = $repository->findOneBy(array('twitter_id' => $twitterId));
+		
 		return $userRecord;
 	}
 	
@@ -116,12 +90,8 @@ class MainController extends Controller
 		$userRecord->setDni($register['dni']);
 		$userRecord->setEdad($register['edad']);
 		$userRecord->setTelefono($register['telefono']);
-		$userRecord->setNacionalidad($register['provincia']);
+		$userRecord->setProvincia($register['provincia']);
 		$userRecord->setMail($register['mail']);
-	}
-	
-	public function sendMailerAction(Request $request)
-	{
-		$this->get('lan.send.mailer')->SendRegisterMail();
+		$userRecord->setAcceptNewsletter($register['accept_newsletter']);
 	}
 }

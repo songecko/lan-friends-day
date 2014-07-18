@@ -9,7 +9,3 @@ lan_register:
 lan_send_tweet:
     pattern: /send-tweet
     defaults: { _controller: OdiseoLanBundle:Frontend/Main:sendTweet }
-    
-lan_send_mail:
-    pattern: /test-mail-sender
-    defaults: { _controller: OdiseoLanBundle:Frontend/Main:sendMailer }

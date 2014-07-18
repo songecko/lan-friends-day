@@ -69,7 +69,7 @@ Odiseo\LanBundle\Entity\User:
         acceptNewsletter:
             column: acceptNewsletter
             type: boolean
-            default: false 
+            nullable: true 
          
     oneToMany:
         twitters:

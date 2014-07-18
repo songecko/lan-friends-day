@@ -1,39 +1,103 @@
-<!--  USER IS LOGGED , BUT IS NOT PARTCIPATING -->
-
-
-<form class="form" action="{{ path('lan_register')}}" method="post" id="register-form">
-		<div class="formTop">
-			<img src="{{ asset('bundles/odiseolan/images/form-image.png') }}" />
-			<div class="inputsTop">
-				<input type="text" name="register[fullname]" placeholder="Nombre y Apellido"    value="{{ fullName|default('') }}" id="register_fullname" class="long"
-					data-rule-required="true"
-				>
-				<input type="text" name="register[dni]" id="register_dni"  value="{{ dni|default('') }}"   placeholder="Dni" class="short"
-					maxlength="8"
-					data-rule-required="true" data-rule-minlength="8" data-rule-maxlength="8"  data-rule-digits="true"
-				>
-				<input type="text" name="register[edad]" id="register_edad"  value="{{ edad|default('') }}"    placeholder="Edad" class="short"
-					data-rule-required="true" data-rule-digits="true"
-				>
-				<input type="text" name="register[telefono]" id="register_telefono" value="{{ telefono|default('') }}"  placeholder="Teléfono" class="long"
-					data-rule-digits="true"
-				>
-			</div>
-			<div class="inputsBottom">
-				<input type="text"  name="register[nacionalidad]" id="register_nacionalidad" value="{{ nacionalidad|default('') }}"  placeholder="Nacionalidad" class="long"
-					data-rule-required="true"
-				>
-				<input type="text" name="register[mail]" id="register_mail" value="{{ email|default('') }}"   placeholder="Mail" class="email"
-					data-rule-required="true" data-rule-email="true"
-				>
-				<input type="checkbox" name="terms" value="terms" class="checkbox"
-					data-rule-required="true"
-				><p>Acepto los términos y condiciones</p>
-			</div>
+<!-- Modal Registro -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form class="form" action="{{ path('lan_register')}}" method="post" id="register-form">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">cerrar</span></button>
+					<h4 class="modal-title" ><img src="{{ asset('bundles/odiseolan/images/lan.png') }}" alt="LAN Argentina"/> Tarjeta de Embarque</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">        
+						<div class="form-group clearfix">
+							<div class="col-xs-4">
+								<span>desde</span>Argentina
+							</div>
+							<div class="col-xs-4">
+								<span>hacia</span>Brasil
+							</div>
+							<div class="col-xs-4">
+								<img style=" max-width:130px; float:right" src="{{ asset('bundles/odiseolan/images/code.png') }}"/>
+	            			</div>
+						</div>
+						
+						<div class="form-group clearfix">
+							<div class="col-xs-12"><span>datos del pasajero</span></div>
+							<div class="col-xs-12 col-sm-4">
+								<input type="text" class="form-control" name="register[fullname]" id="register_fullname" placeholder="Nombre y Apellido"
+									data-rule-required="true"
+								>
+							</div>
+							<div class="col-xs-12 col-sm-4">
+								<input type="text" class="form-control" name="register[mail]" id="register_mail" placeholder="Email"
+									data-rule-required="true" data-rule-email="true"
+								>
+							</div>
+							<div class="col-xs-12 col-sm-4">
+	              				<input type="text" class="form-control" name="register[telefono]" id="register_telefono" placeholder="Teléfono"
+	              					data-rule-digits="true"
+	              				>
+							</div>
+						</div>
+	          
+	          			<div class="form-group clearfix info">
+	            			<div class="col-xs-12"><span>información pasajero</span></div>
+	            			<div class="col-xs-12 col-sm-4">
+	              				<select class="form-control" name="register[provincia]" id="register_provincia"
+	              					data-rule-required="true"
+	              				>
+	              					<option value="">Provincia</option>
+	                				<option value="Buenos Aires">Buenos Aires</option>
+									<option value="Ciudad de Buenos Aires">Ciudad de Buenos Aires</option>
+									<option value="Catamarca">Catamarca</option> <option value="Chaco">Chaco</option> <option value="Chubut">Chubut</option> <option value="Cordoba">Cordoba</option>
+									<option value="Corrientes">Corrientes</option> <option value="Entre Rios">Entre Rios</option> <option value="Formosa">Formosa</option> <option value="Jujuy">Jujuy</option>
+									<option value="La Pampa">La Pampa</option> <option value="La Rioja">La Rioja</option> <option value="Mendoza">Mendoza</option> <option value="Misiones">Misiones</option>
+									<option value="Neuquen">Neuquen</option> <option value="Rio Negro">Rio Negro</option> <option value="Salta">Salta</option> <option value="San Juan">San Juan</option>
+									<option value="San Luis">San Luis</option> <option value="Santa Cruz">Santa Cruz</option> <option value="Santa Fe">Santa Fe</option>
+									<option value="Santiago del Estero">Santiago del Estero</option> <option value="Tierra del Fuego">Tierra del Fuego</option> <option value="Tucuman">Tucuman</option>
+	              				</select>
+	            			</div>
+	            			<div class="col-xs-12 col-sm-4">
+	              				<input type="text" class="form-control" name="register[dni]" id="register_dni" placeholder="DNI"
+	              					maxlength="8"
+									data-rule-required="true" data-rule-minlength="8" data-rule-maxlength="8"  data-rule-digits="true"
+	              				>
+	            			</div>
+	            			<div class="col-xs-12 col-sm-4">
+	              				<select class="form-control" name="register[edad]" id="register_edad"
+	              					data-rule-required="true" data-rule-digits="true"
+	              				>
+	                				<option value="">Edad</option>
+	                				{% for age in 18..80 %}
+	                				<option value="{{ age }}">{{ age }}</option>
+	                				{% endfor %}
+	              				</select>
+	            			</div>
+	          			</div>
+	        		</div>
+	      		</div>
+	      	
+	      		<div class="modal-footer"> 
+	        		<div class="col-xs-12 col-sm-8">
+	        			<div class="checkbox">
+	    					<label>
+	      						<input type="checkbox" name="register[accept_terms]" id="register_accept_terms"
+	      							data-rule-required="true"
+	      						> Acepto los términos y condiciones
+	    					</label>
+	  					</div>
+	          			<div class="checkbox">
+	    					<label>
+	      						<input type="checkbox" name="register[accept_newsletter]" id="register_accept_newsletter"> Acepto recibir por Email novedades y promociones de Lan
+	    					</label>
+	  					</div>
+	        		</div>
+	        
+	        		<div class="col-xs-12 col-sm-4">
+	         			<button type="submit" class="btn btn-default">Abordar</button>
+	        		</div>
+	      		</div>
+	      	</form>
 		</div>
-		<div class="formBottom">
-			<button class="follow fontsforweb_fontid_1416">FOLLOW</button>
-			<button type="submit " class="register fontsforweb_fontid_1416">PARTICIPAR</button>
-		</div>
-	
-</form>
+	</div>
+</div>
