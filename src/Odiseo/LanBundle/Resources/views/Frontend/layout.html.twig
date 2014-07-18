@@ -8,10 +8,10 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="mobile-web-app-capable" content="yes">
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>{% block title %}Lan{% endblock %}</title>
 
-	     <!-- stylesheets -->
+	    <!-- stylesheets -->
 		{# stylesheets... #}
 		{% block stylesheets %}
 		{% stylesheets output='css/frontend.min.css' filter='cssrewrite'
@@ -21,47 +21,48 @@
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
 		{% endstylesheets %}
 		{% endblock %}
+		
+		<!--[if lt IE 9]>
+      	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
     </head>
-    <body>
-    	<div class="container">
-	    	<header>				
-	    		
-	    		{% if app.user  %}
-	    		
-	    		<div class="login">
-	    			<img src="{{ app.user.twitterProfileImageUrl }}" />
-	    			<div class="user">
-	    				<p class="welcome">Bienvenido</p><p class="username">{{ app.user.userName }}</p>
-	    			</div>
-	    		</div>
-	    			    	
-	    		{% else %}
-	    		
-	    		<div class="singin">
-	    			<a href="{{ hwi_oauth_login_url('twitter') }}"  class="ingresar follow fontsforweb_fontid_1416"><p>INGRESAR CON TWITTER</p></a>
-	    		</div>
-	    		{% endif %}
-	    	
-	    	</header>
-			{% block content %}
-			<section></section>
-			{% endblock %}
-				<div class="modal fade" id="alertModal">
-		  			<div class="modal-dialog">
-		    			<div class="modal-content">
-		      				<div class="modal-header">
-		      					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		      				</div>
-		      				<div class="modal-body" id='modal-body'>
-		        				<p class="message"></p>
-		      				</div>
-		    			</div>
-		  			</div>
+    <body class="avion">
+    	<!-- Header -->
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="logo"><a href="{{ path('odiseo_lan_frontend_homepage') }}"><img src="{{ asset('images/lan.png') }}" alt="LAN Argentina"/></a></div>
+				<a href="#" class="twitter"></a>
+				{% if app.user %}
+				<div class="user">
+					<span>Bienvenido, <strong>{{ app.user.canonicalName }}</strong></span> 
+					<img class="img-circle" src="{{ app.user.twitterProfileImageUrl }}" />
 				</div>
-			<footer>
-				  <img src="{{ asset('bundles/odiseolan/images/footer-lan.png') }}" />
-				  <p>Promoción válida en Argentina desde el 01.04.2014 hasta el 31.05.2014. Ver bases y condiciones en <a>www.lan.com.ar</a></p>
-			</footer>
+				{% else %}
+				<a href="{{ hwi_oauth_login_url('twitter') }}"  class="ingresar follow fontsforweb_fontid_1416"><p>INGRESAR CON TWITTER</p></a>
+				{% endif %}
+			</div>
+		</nav>
+			
+		{% block content %}{% endblock %}
+				
+		<div class="modal fade" id="alertModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body" id='modal-body'>
+						<p class="message"></p>
+					</div>
+				</div>
+		  	</div>
+		</div>
+		
+		<div class="footer"> 
+			<a href="#1">Bases y Condiciones</a> 
+			<a href="#1">Preguntas Frecuentes</a> 
+			<a href="#1">Como Funciona</a> 
 		</div>
 		
 		<!-- javascript -->

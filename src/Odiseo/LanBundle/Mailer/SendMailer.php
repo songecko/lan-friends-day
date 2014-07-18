@@ -40,14 +40,14 @@ class SendMailer{
 	{
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
-		$view = 'LanBundle:Frontend/Mailer:email.html.twig';
+		$view = 'OdiseoLanBundle:Frontend/Mailer:email.html.twig';
 	
 		$this->message
 		->setSubject('Lan Amigos')
 		->setFrom('prueba@test.com')
 		->setTo($email)
 		->setBody(
-				$this->container->get('templating')->render($view, array('fullname' => $fullname))
+				$this->container->get('templating')->render($view, array('fullname' => $fullname)),'text/html'
 		)
 		;
 		$this->container->get('mailer')->send($this->message);
