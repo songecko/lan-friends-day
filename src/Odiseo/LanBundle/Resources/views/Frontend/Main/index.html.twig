@@ -14,6 +14,11 @@
 			{% else %}
 			
 			<br>
+			
+			<h1>Podés ganar viajes para vos y 3 amigos a Brasil</h1>
+			
+			{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
+			
 			{%   if app.user %}
       		<!-- register -->
 			{{ include('OdiseoLanBundle:Frontend/Main:registerForm.html.twig') }}
@@ -27,11 +32,7 @@
       			<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
       			<strong>Participá iniciando sesion</strong> en Twitter
       		</a>
-			{%   endif %}
-			
-			<h1>Podés ganar viajes para vos y 3 amigos a Brasil</h1>
-			
-			{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
+			{%   endif %}			
 		
       		<!-- pasos 
 			<div class="pasos clearfix">
