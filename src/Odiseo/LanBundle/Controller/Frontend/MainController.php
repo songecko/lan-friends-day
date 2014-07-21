@@ -25,6 +25,11 @@ class MainController extends Controller
 		return $this->render('OdiseoLanBundle:Frontend/Main:countdown.html.twig');
 	}
 	
+	public function avionAction()
+	{
+		return $this->render('OdiseoLanBundle:Frontend/Main:avion.html.twig');
+	}
+	
 	public function renderContentAction(Request $request) {
 	
 		$user = $this->getUser();
