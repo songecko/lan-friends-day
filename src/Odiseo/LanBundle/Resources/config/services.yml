@@ -39,3 +39,6 @@ services:
         class: Odiseo\LanBundle\Mailer\SendMailer
         arguments: ["@service_container"]
 
+    lan.services.twittercallsmanager:
+      class: Odiseo\LanBundle\Services\Frontend\TwitterCallsManager
+      arguments: [%consumer_key% , %consumer_key_secret%]

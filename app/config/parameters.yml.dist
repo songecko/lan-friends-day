@@ -13,3 +13,5 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+    consumer_key: 	   7V5v4TbuvgwyVei7sub8aTgxu
+    consumer_key_secret: vR9m4wBBpz8F33hwd3ZdjjoN7WGtSBFL87rSMFEZSLDEjtvJAd

@@ -1,0 +1,23 @@
+{% extends 'OdiseoLanBundle::Frontend/layout.html.twig' %}
+
+{% block content %}
+<div class="cuerpo">
+
+		<form class="form" action="{{ path('lan_send_tweet')}}" method="post" id="tweet-form">
+				<div class="formTop">
+					<div class="inputsTop">
+						<textarea   data-rule-required="true" rows="4" cols="50" name="form_data[tweet]" placeholder="Twitea...."  id="form_data_tweet" data-rule-required="true">
+							#TEST adfasf  @songecko asdfads  asdf  @Ansin_B adafsdf @xxxxxxxxxxx adfs 
+						</textarea>
+					</div>
+		
+				</div>
+				<div class="formBottom">
+					<button type="submit " class="register fontsforweb_fontid_1416">TWITTEAR</button>
+				</div>
+			
+		</form>
+	
+</div>		
+
+{% endblock %}

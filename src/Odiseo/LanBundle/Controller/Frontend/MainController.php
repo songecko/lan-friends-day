@@ -83,27 +83,68 @@ class MainController extends Controller
 	
 	public function sendTweetAction(Request $request)
 	{
-		$settings = array(
-    		'oauth_access_token' => "16963100-tcoizpaLQGm4KygHh6r9bbIZAcxbQSgWU7xa9SAnD",
-    		'oauth_access_token_secret' => "gXxufSn2m9B9SsWrcu52pGg3drnj6zIkYMYt06A1dGYJ0",
-    		'consumer_key' => "DjLQ9OM87GAPn6eTobxEnWAxz",
-    		'consumer_secret' => "2bCmeQF6SPI5HAB2XpNVzx47pg2DT8cpATiJtkSMePQ8XOeWOw"
-		);
-		
-		$url = 'https://api.twitter.com/1.1/statuses/update.json';
-		$requestMethod = 'POST';
-		
-		$twitter = new TwitterAPIExchange($settings);
-		
-		$res =  $twitter->setPostfields(array('status' => 'nuevo post'))
-			->buildOauth($url, $requestMethod)
-			->performRequest();
-		
-		ldd($res);
-		
-		return $this->render('OdiseoLanBundle:Frontend/Main:test.html.twig', array(
-				'status' => $status
-		));
+		$callsManager = $this->get('lan.services.twittercallsmanager');
+		$formData = 	$request->get ( 'form_data' );
+		if ($formData != null ){
+			$sToTweet = $formData['tweet'];
+			if ($sToTweet != null)
+			{
+				$error = $this->_validateRulesForTweet($sToTweet);
+				if ( $error == null)
+				{
+					$tweets = json_decode($callsManager->updateUserStatus("STATUS TEST 5", '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet'));
+					if ( $tweets->errors)
+					{
+						$data = ['onError' => 'true', 'errors' => 'Ocurrió un error, intenta luego.'];
+						return new JsonResponse($data);
+					}
+					
+					//grabar tweet en la base de datos.
+					$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];
+					return new JsonResponse($data);
+				}
+				else{
+					
+					$data = ['onError' => 'true', 'errors' => $error];
+					return new JsonResponse($data);
+				}
+			}
+			else
+			{	
+				$data = ['onError' => 'true', 'errors' => 'Tu tweet no puede estar vacio.'];
+				return new JsonResponse($data);
+			}
+		}
+		else
+		{
+			return $this->render('OdiseoLanBundle:Frontend/Main:send_tweet.html.twig');
+		}
+	}
+	
+	/**
+	 * to be valid: 3 friends mentioned and existing, and "AmigosLan" as hashTag
+	 * @param unknown $sToTweet
+	 * @return boolean
+	 */
+	private function _validateRulesForTweet($sToTweet)
+	{
+		if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
+		{
+			
+			$friends = TweetParser::getMentionedFriends($sToTweet);
+			if (count($friends) == 3 )
+			{
+				$callsManager = $this->get('lan.services.twittercallsmanager');
+				
+				if ($callsManager->isFollowingBy($friends, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet') )
+					return null;
+				else {
+					return "Los amigos citados te deben seguir.";
+				}
+			}
+			else return 'Debes citar 3 amigos.';
+		}
+		else  return 'Debe citar el hashtag "AmigosLan';
 	}
 	
 	private function retrieveUserFromDb($twitterId)
