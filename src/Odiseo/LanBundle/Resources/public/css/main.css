@@ -51,7 +51,7 @@ h4.modal-title { font-size:14px;} h4.modal-title img { max-width:60px; margin-ri
 .navbar .user { color:#fff; font-size:12px; font-size:12px; float:right; margin-right: 20px;}
 .navbar .user img { max-width:45px; border:solid 2px #fff; margin-left:10px;}
 .navbar .twitter { float: right; width:70px; height:70px; background:#4a83a0 url(../images/twitter.gif) no-repeat center center;}
-.navbar .signinButton { padding: 10px 20px 10px 45px; line-height: 24px; float: right; margin: 12px; }
+.navbar .signinButton { padding: 10px 20px 10px 45px; line-height: 14px; font-size: 14px; float: right; margin: 12px; }
 .navbar .signinButton .glyphicon { margin: -3px 0 0 -30px; }
 
 
