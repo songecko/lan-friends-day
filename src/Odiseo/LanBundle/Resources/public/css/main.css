@@ -1,8 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic-ext);
-@import url(http://fonts.googleapis.com/css?family=Candal);
 body { cursor:default; font-family: 'Roboto', sans-serif;background:#f3f8fd;height: 95%; width: 100%; position: absolute; }
 body.inicio { background:url(../images/bg.jpg) no-repeat center center fixed ; background-size:cover; height:auto}
 
