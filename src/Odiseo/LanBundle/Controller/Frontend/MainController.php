@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Odiseo\LanBundle\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Odiseo\LanBundle\Utils\TweetParser;
 
 class MainController extends Controller 
 {	
@@ -92,8 +93,10 @@ class MainController extends Controller
 				$error = $this->_validateRulesForTweet($sToTweet);
 				if ( $error == null)
 				{
-					$tweets = json_decode($callsManager->updateUserStatus("STATUS TEST 5", '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet'));
-					if ( $tweets->errors)
+				
+					$tweets = json_decode($callsManager->updateUserStatus($sToTweet, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet'));
+					
+					if (  isset($tweets->errors))
 					{
 						$data = ['onError' => 'true', 'errors' => 'Ocurrió un error, intenta luego.'];
 						return new JsonResponse($data);
@@ -128,23 +131,36 @@ class MainController extends Controller
 	 */
 	private function _validateRulesForTweet($sToTweet)
 	{
-		if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
+		if (TweetParser::existHashTag($sToTweet, "TEST"))
 		{
 			
 			$friends = TweetParser::getMentionedFriends($sToTweet);
 			if (count($friends) == 3 )
 			{
-				$callsManager = $this->get('lan.services.twittercallsmanager');
-				
-				if ($callsManager->isFollowingBy($friends, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet') )
-					return null;
-				else {
-					return "Los amigos citados te deben seguir.";
+				if ( $this->_areDifferents($friends) ){
+					$callsManager = $this->get('lan.services.twittercallsmanager');
+					
+					if ($callsManager->isFollowingBy($friends, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet') )
+						return null;
+					else {
+						return "Los amigos citados te deben seguir.";
+					}
 				}
+				else{
+					return 'Debes citar 3 amigos diferentes.';
+				}
+				
 			}
-			else return 'Debes citar 3 amigos.';
+			else return 'Debes citar 3 amigos diferentes.';
 		}
-		else  return 'Debe citar el hashtag "AmigosLan';
+		else  return 'Debe citar el hashtag "AmigosLan". ';
+	}
+	
+	private function _areDifferents($friends){
+		
+		return ( ($friends[0] != $friends[1] ) && ($friends[0] != $friends[2] ) && 
+				 ($friends[1] != $friends[2] )	);
+		
 	}
 	
 	private function retrieveUserFromDb($twitterId)

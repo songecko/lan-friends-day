@@ -19,14 +19,13 @@ function addMessagesAndShowAlertModal( messages )
 	$('#alertModal').modal('show');
 }
 
-function sendForm( )
+function sendForm( form )
 {
 	var sending = false;
 	
 	if(!sending)
 	{
 		sending = true;
-		var form = $("form#register-form").get(0);
 		var formObj = $(form);
 		var formURL = formObj.attr("action");
 		var formData = new FormData(form);
@@ -48,11 +47,13 @@ function sendForm( )
 	            {	
 	            	if (data.onError == 'true')
 	            	{
-	            		addMessagesAndShowAlertModal(data.errors);
+	            		showAlertModal(data.errors);
 
 	            	}else
 	            	{
+	            		$('#form_data_tweet').val('#AmigosLan');
 	            		showAlertModal( data.message );
+	            		
 	            	}
 	            }
 	        }					
@@ -98,6 +99,29 @@ $(document).ready(function()
 		{
 			//sendForm();
 			form.submit();
+		}
+	});
+	
+	$("#tweet-form").validate({
+		invalidHandler: function(event, validator)
+		{
+			showAlertModal("Debes completar correctamente el formulario.");		
+		},		
+		errorPlacement: function(error, element) 
+		{
+		},
+		highlight: function(element, errorClass, validClass) 
+		{
+		    $(element).addClass(errorClass).removeClass(validClass);
+		},
+		unhighlight: function(element, errorClass, validClass) 
+		{
+		    $(element).removeClass(errorClass).addClass(validClass);
+		},
+		submitHandler: function(form) 
+		{
+			sendForm(form);
+			//form.submit();
 		}
 	});
 	
