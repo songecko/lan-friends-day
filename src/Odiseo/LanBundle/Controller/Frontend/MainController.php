@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Odiseo\LanBundle\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Odiseo\LanBundle\Utils\TweetParser;
+use Odiseo\LanBundle\Entity\TwitterUser;
 
 class MainController extends Controller 
 {	
@@ -87,6 +88,7 @@ class MainController extends Controller
 		return $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage'));
 	}
 	
+	
 	public function sendTweetAction(Request $request)
 	{
 		$callsManager = $this->get('lan.services.twittercallsmanager');
@@ -99,6 +101,7 @@ class MainController extends Controller
 				if ( $error == null)
 				{
 				
+					$this->_saveTwitterUser( $sToTweet);
 					$tweets = json_decode($callsManager->updateUserStatus($sToTweet, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet'));
 					
 					if (  isset($tweets->errors))
@@ -106,7 +109,6 @@ class MainController extends Controller
 						$data = ['onError' => 'true', 'errors' => 'Ocurrió un error, intenta luego.'];
 						return new JsonResponse($data);
 					}
-					
 					//grabar tweet en la base de datos.
 					$data = ['onError' => 'false', 'message' => 'Gracias por participar!!'];
 					return new JsonResponse($data);
@@ -186,5 +188,16 @@ class MainController extends Controller
 		$userRecord->setProvincia($register['provincia']);
 		$userRecord->setMail($register['mail']);
 		$userRecord->setAcceptNewsletter(isset($register['accept_newsletter'])?true:false);
+	}
+	
+	private function _saveTwitterUser( $sToTweet){
+		$user = $this->getUser();
+		$em = $this->getDoctrine()->getManager ();
+		$twitterUser = new TwitterUser();
+		$twitterUser->setUser($user);
+		$twitterUser->setTwitter($sToTweet);
+		$em->persist($twitterUser);
+		$em->flush();
+		ld($twitterUser);
 	}
 }
