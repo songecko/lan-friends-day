@@ -13,3 +13,9 @@ lan_send_tweet:
 lan_interno:
     pattern: /interno
     defaults: { _controller: OdiseoLanBundle:Frontend/Main:interno }
+    
+lan_plane:
+    pattern: /avion
+    defaults: { _controller: OdiseoLanBundle:Frontend/Main:avion }
+    
+    
