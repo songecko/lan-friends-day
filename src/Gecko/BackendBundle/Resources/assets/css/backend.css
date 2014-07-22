@@ -9,4 +9,9 @@ body > .header .logo {
 	
 }
 
-.form-group input[type=checkbox]{ width: 20px; }
+.form-group input[type=checkbox]{ width:20px; }
+
+.form-group #lan_configuration_dateBegin_date{ float:left;}
+.form-group #lan_configuration_dateEnd_date{ float:left;}
+.form-group #lan_configuration_dateBegin_time_hour{ margin-left:3px;}
+.form-group #lan_configuration_dateEnd_time_hour{ margin-left:3px;}

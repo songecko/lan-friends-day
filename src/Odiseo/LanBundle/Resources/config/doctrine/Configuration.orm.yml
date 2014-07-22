@@ -10,10 +10,10 @@ Odiseo\LanBundle\Entity\Configuration:
     fields:
         dateBegin:
             column: date_begin
-            type: date
+            type: datetime
         dateEnd:
             column: date_end
-            type: date
+            type: datetime
         beginMailSended:
             column: beginMailSended
             type: boolean

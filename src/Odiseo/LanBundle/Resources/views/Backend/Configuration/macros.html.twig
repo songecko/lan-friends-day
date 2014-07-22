@@ -17,8 +17,8 @@
 			</tr>
 			{% for configuration in configurations %}
 	        <tr>
-				<td>{{ configuration.dateBegin|date("d-m-Y") }}</td>
-				<td>{{ configuration.dateEnd|date("d-m-Y") }}</td>
+				<td>{{ configuration.dateBegin|date("d-m-Y H:i") }}</td>
+				<td>{{ configuration.dateEnd|date("d-m-Y H:i") }}</td>
 				<td>
 					{% if(configuration.beginMailSended) %}
 						<span class="label label-success">Si</span>
