@@ -17,5 +17,3 @@ lan_interno:
 lan_plane:
     pattern: /avion
     defaults: { _controller: OdiseoLanBundle:Frontend/Main:avion }
-    
-    

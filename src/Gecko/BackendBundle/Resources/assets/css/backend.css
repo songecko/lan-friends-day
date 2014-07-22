@@ -8,3 +8,5 @@ body > .header .logo {
 	margin:5px; /* Separar los botones */
 	
 }
+
+.form-group input[type=checkbox]{ width: 20px; }

@@ -44,26 +44,26 @@ class Configuration
         return $this->dateEnd;
     }
     
-    public function setBeginMainSended($beginMailSended)
+    public function setBeginMailSended($beginMailSended)
     {
     	$this->beginMailSended = $beginMailSended;
     
     	return $this;
     }
     
-    public function getBeginMainSended()
+    public function getBeginMailSended()
     {
     	return $this->beginMailSended;
     }
     
-    public function setEndMainSended($endMailSended)
+    public function setEndMailSended($endMailSended)
     {
     	$this->endMailSended = $endMailSended;
     
     	return $this;
     }
     
-    public function getEndMainSended()
+    public function getEndMailSended()
     {
     	return $this->endMailSended;
     }

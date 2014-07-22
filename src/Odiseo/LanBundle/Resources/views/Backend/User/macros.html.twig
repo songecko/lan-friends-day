@@ -16,8 +16,7 @@
 				<th>Edad</th>
 				<th>Telefono</th>
 				<th>Provincia</th>
-				<th>Email</th>
-				<th>Tweets</th>
+				<th>Email</th>				
 				<th>Newsletter?</th>
 				<th></th>
 			</tr>
@@ -30,8 +29,7 @@
 				<td>{{ user.edad }}</td>
 				<td>{{ user.telefono }}</td>
 				<td>{{ user.provincia }}</td>
-				<td>{{ user.mail }}</td>
-				<td><a href="{{ path('odiseo_lan_twitteruser_index_by_user', {'user_id': user.id} )}}">Ver Tweets ({{ user.twitters|length }})</a></td>
+				<td>{{ user.mail }}</td>				
 				<td>
 					{% if user.acceptNewsletter %}
 					<span class="label label-success">Sí</span>
@@ -39,8 +37,11 @@
 					<span class="label label-danger">No</span>
 					{% endif %}
 				</td>
-				<td>
+				<td></td>
+				<td>		
+							
 					<div class="pull-right">
+						<a class="btn btn-success" href="{{ path('odiseo_lan_twitteruser_index_by_user', {'user_id': user.id} )}}">Ver Tweets ({{ user.twitters|length }})</a>
 	                    {{ buttons.delete(path('odiseo_lan_user_delete', {'id': user.id})) }}
 	                </div>
 				</td>
