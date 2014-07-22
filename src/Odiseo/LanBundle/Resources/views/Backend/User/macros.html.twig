@@ -42,7 +42,12 @@
 							
 					<div class="pull-right">
 						<a class="btn btn-success" href="{{ path('odiseo_lan_twitteruser_index_by_user', {'user_id': user.id} )}}">Ver Tweets ({{ user.twitters|length }})</a>
-	                    {{ buttons.delete(path('odiseo_lan_user_delete', {'id': user.id})) }}
+	                    <form action="{{ path('odiseo_lan_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Estas seguro?')" method="post" style="display: inline;">
+    						<input type="hidden" name="_method" value="DELETE">
+    						<button class="btn btn-danger">
+        						<i class="icon-trash"></i><span>Eliminar</span>
+    						</button>
+						</form>
 	                </div>
 				</td>
 			</tr>
