@@ -14,4 +14,12 @@ Odiseo\LanBundle\Entity\Configuration:
         dateEnd:
             column: date_end
             type: date
+        beginMailSended:
+            column: beginMailSended
+            type: boolean
+            default: false
+        endMailSended:
+            column: endMailSended
+            type: boolean
+            default: false 
     lifecycleCallbacks: {  }
