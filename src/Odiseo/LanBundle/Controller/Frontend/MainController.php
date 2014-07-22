@@ -15,7 +15,6 @@ class MainController extends Controller
 	{
 		return $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig');
 	}
-
 	
 	public function internoAction()
 	{
