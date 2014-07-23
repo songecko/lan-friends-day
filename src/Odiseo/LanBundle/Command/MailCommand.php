@@ -31,7 +31,7 @@ class MailCommand extends ContainerAwareCommand
 		
 		if(!$configuration)
 		{
-			$output->writeln("Unable to get the configuration object");
+			$output->writeln($this->getFormatedMessage("Unable to get the configuration object"));
 			return;
 		}
 		
@@ -42,8 +42,8 @@ class MailCommand extends ContainerAwareCommand
 		if($configuration->isCampaignActive() && $beginMailSended == false)
 		{
 			//Send the begin email to all users
-			$output->writeln("Send BEGIN email to all users...");
-			$this->sendEmail(true);
+			$output->writeln($this->getFormatedMessage("Send BEGIN email to all users."));
+			$output->writeln($this->sendEmail(true));
 			
 			//Save the configuration
 			$configuration->setBeginMailSended(true);
@@ -54,8 +54,8 @@ class MailCommand extends ContainerAwareCommand
 		else if ($configuration->isCampaignFinished() && $endMailSended == false)
 		{
 			//Send the end email to all users
-			$output->writeln("Send END email to all users...");
-			$this->sendEmail(false);
+			$output->writeln($this->getFormatedMessage("Send END email to all users."));
+			$output->writeln($this->sendEmail(false));
 			
 			//Save the configuration
 			$configuration->setEndMailSended(true);
@@ -63,7 +63,7 @@ class MailCommand extends ContainerAwareCommand
 			$dm->flush();
 		}else {
 			//Nothing to do
-			$output->writeln("Nothing to do");
+			$output->writeln($this->getFormatedMessage("Nothing to do"));
 		}
 	}
 	
@@ -74,15 +74,35 @@ class MailCommand extends ContainerAwareCommand
 		
 		$registeredUsers = $userRepository->getRegisteredUsers();
 		
+		$total = count($registeredUsers);
+		$sended = 0;
+		
 		foreach ($registeredUsers as $user)
 		{
-			if($isBeginEmail)
+			try 
 			{
-				$sendMailer->sendBeginEmail($user);
-			}else 
+				if($isBeginEmail)
+				{
+					$sendMailer->sendBeginMail($user);
+				}else 
+				{
+					$sendMailer->sendEndMail($user);
+				}
+				
+				$sended++;
+			}
+			catch (\Exception $e)
 			{
-				$sendMailer->sendEndEmail($user);
 			}
 		}
+		
+		return "Sended ".$sended."/".$total." emails.";
+	}
+	
+	protected function getFormatedMessage($message)
+	{
+		$currentDate = date('d/m/Y H:i:s', time());
+		
+		return "[".$currentDate."]> ".$message;
 	}
 }

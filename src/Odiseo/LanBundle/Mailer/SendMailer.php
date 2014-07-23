@@ -25,7 +25,13 @@ class SendMailer
 		$this->getMessage($view, $email)
 			->setSubject($fullname.', ya estás registrado en la app del Mes del Amigo LAN!');
 		
-		$this->container->get('mailer')->send($this->message);
+		try {
+			$this->container->get('mailer')->send($this->message);
+		}
+		catch (\Exception $e) 
+		{
+			throw $e;
+		}
 	}
 	
 	public function sendBeginMail(User $user)
@@ -37,7 +43,13 @@ class SendMailer
 		$this->getMessage($view, $email)
 			->setSubject($fullname.', ya ha comenzado la promoción!');
 		
-		$this->container->get('mailer')->send($this->message);
+		try {
+			$this->container->get('mailer')->send($this->message);
+		}
+		catch (\Exception $e) 
+		{
+			throw $e;
+		}
 	}
 	
 	public function sendEndMail(User $user)
@@ -49,7 +61,13 @@ class SendMailer
 		$this->getMessage($view, $email)
 			->setSubject($fullname.', ya ha finalizado la promoción!');
 	
-		$this->container->get('mailer')->send($this->message);
+		try {
+			$this->container->get('mailer')->send($this->message);
+		}
+		catch (\Exception $e) 
+		{
+			throw $e;
+		}
 	}
 	
 	private function getMessage($view, $emailTo)
