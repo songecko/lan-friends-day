@@ -20,6 +20,7 @@ class MailCommand extends ContainerAwareCommand
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
+		$configuration = null;
 		$dm = $this->getContainer()->get('doctrine')->getManager();
 		 
 		//get the current configuration

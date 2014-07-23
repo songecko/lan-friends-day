@@ -13,7 +13,11 @@ class MainController extends Controller
 {	
 	public function indexAction(Request $request) 
 	{
+<<<<<<< HEAD
 		return $this->_haveToGoToIndex() ?  $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig')  :   $this->redirect($this->generateUrl('lan_plane')) ;
+=======
+	return $this->_haveToGoToIndex() ?  $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig')  :   $this->redirect($this->generateUrl('lan_plane')) ;
+>>>>>>> 4dbccd5fe067271e6d85a0e081e5115a5e3e4f6a
 	}
 	
 	public function internoAction()
@@ -157,8 +161,12 @@ class MainController extends Controller
 	 */
 	private function _validateRulesForTweet($sToTweet)
 	{
+<<<<<<< HEAD
 		if(  strlen($sToTweet) <= 140 )
 		{
+=======
+	if(  strlen($sToTweet) <= 140 ){
+>>>>>>> 4dbccd5fe067271e6d85a0e081e5115a5e3e4f6a
 		if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
 			{
 				$friends = TweetParser::getMentionedFriends($sToTweet);
@@ -167,22 +175,39 @@ class MainController extends Controller
 					if ( $this->_areDifferents($friends) ){
 						$callsManager = $this->get('lan.services.twittercallsmanager');
 						
+<<<<<<< HEAD
 						if ($callsManager->isFollowingBy($friends, $_SESSION['twitter_access_token'], $_SESSION['twitter_token_secret']) )
+=======
+						if ($callsManager->isFollowingBy($friends, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet') )
+>>>>>>> 4dbccd5fe067271e6d85a0e081e5115a5e3e4f6a
 							return null;
 						else {
 							return "Los amigos citados te deben seguir.";
 						}
+<<<<<<< HEAD
+					}
+					else{
+						return 'Debes citar 3 amigos diferentes.';
+=======
+>>>>>>> 4dbccd5fe067271e6d85a0e081e5115a5e3e4f6a
 					}
 					else{
 						return 'Debes citar 3 amigos diferentes.';
 					}
+					
 				}
 				else return 'Debes citar 3 amigos diferentes.';
 			}
+<<<<<<< HEAD
 			else  return 'Debes citar el hashtag "#AmigosLan". ';
+=======
+			else  return 'Debe citar el hashtag "AmigosLan". ';
+>>>>>>> 4dbccd5fe067271e6d85a0e081e5115a5e3e4f6a
 		}
 		else return 'El tweet no puede superar los 140 caracteres. ';
 	}
+	
+	
 	
 	private function _areDifferents($friends){
 		
