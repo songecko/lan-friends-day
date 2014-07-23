@@ -13,7 +13,7 @@ class MainController extends Controller
 {	
 	public function indexAction(Request $request) 
 	{
-		return $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig');
+	return $this->_haveToGoToIndex() ?  $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig')  :   $this->redirect($this->generateUrl('lan_plane')) ;
 	}
 	
 	public function internoAction()
@@ -33,8 +33,13 @@ class MainController extends Controller
 	
 	private function _haveToGoToIndex()
 	{
+		$configuration = null; 
+		$configurations = $this->get('lan.repository.configuration')->findAll();
+		if(isset($configurations[0]))
+			$configuration = $configurations[0];
+		
 		$user = $this->getUser();
-		if ( $user == null || !$user->isRegistered()){
+		if ( $user == null || !$user->isRegistered() || !$configuration || !$configuration->isCampaignActive() ){
 			return true;
 		}
 		return false;
