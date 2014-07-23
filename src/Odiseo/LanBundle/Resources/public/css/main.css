@@ -57,7 +57,7 @@ h1 { color:#22486e;font-size:46px;font-family: 'Candal', sans-serif; letter-spac
 h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spacing:-1px;  text-transform:uppercase; margin-bottom:30px;}
 
 
-.inicio .container { max-width:800px; text-align:center; padding-top:80px; margin-bottom:100px;}
+.inicio .container { max-width:800px; text-align:center; padding-top:40px; margin-bottom:100px;}
 .inicio .timer { max-width:450px; margin:0px auto 50px auto;}
 .timer .col-xs-3 { text-align:center; margin:0; padding:0 3px; color:#181819;font-size:13px; letter-spacing:-1px; font-weight:600; text-transform:uppercase;}
 .timer span { font-size:50px; font-weight:900; color:#fff; background:url(../images/bg_timer.gif) repeat-x; line-height:104px;height:104px; display:block; border-radius:3px; text-align:center;box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); }
