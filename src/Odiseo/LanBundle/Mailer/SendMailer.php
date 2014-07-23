@@ -53,7 +53,13 @@ class SendMailer
 			->setSubject($fullname.', ya ha finalizado la promoción!');
 		
 		$failures = array();
-		$this->container->get('mailer')->send($message, $failures);
+		$mailer = $this->container->get('mailer');
+		$mailer->send($message, $failures);
+		
+		// now manually flush the queue
+		$spool = $mailer->getTransport()->getSpool();
+		$transport = $this->container->get('swiftmailer.transport.real');
+		$spool->flushQueue($transport);
 		
 		return $failures;
 	}
