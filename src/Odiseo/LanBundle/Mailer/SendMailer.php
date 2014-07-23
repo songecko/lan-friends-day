@@ -21,11 +21,11 @@ class SendMailer
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
 		$view = 'OdiseoLanBundle:Frontend/Mailer:registerEmail.html.twig';
+		
 		$message = $this->getMessage($view, $email)
 			->setSubject($fullname.', ya estás registrado en la app del Mes del Amigo LAN!');
 		
-		$failures = array();
-		$this->container->get('mailer')->send($message, $failures);
+		$failures = $this->send($message);
 		
 		return $failures;
 	}
@@ -35,11 +35,11 @@ class SendMailer
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
 		$view = 'OdiseoLanBundle:Frontend/Mailer:beginEmail.html.twig';
+		
 		$message = $this->getMessage($view, $email)
 						->setSubject($fullname.', ya ha comenzado la promoción!');
 		
-		$failures = array();
-		$this->container->get('mailer')->send($message, $failures);
+		$failures = $this->send($message);
 		
 		return $failures;
 	}
@@ -49,14 +49,23 @@ class SendMailer
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
 		$view = 'OdiseoLanBundle:Frontend/Mailer:endEmail.html.twig';
+		
 		$message = $this->getMessage($view, $email)
 			->setSubject($fullname.', ya ha finalizado la promoción!');
 		
+		$failures = $this->send($message);
+		
+		return $failures;
+	}
+	
+	protected function send($message)
+	{
 		$failures = array();
+		
 		$mailer = $this->container->get('mailer');
 		$mailer->send($message, $failures);
 		
-		// now manually flush the queue
+		// manually flush the queue (because using spool)
 		$spool = $mailer->getTransport()->getSpool();
 		$transport = $this->container->get('swiftmailer.transport.real');
 		$spool->flushQueue($transport);
@@ -71,7 +80,7 @@ class SendMailer
 			->setFrom(array('noreply@amigoslan.com' => 'Amigos Lan'))
 			->setTo($emailTo)
 			->setBody(
-				'test',
+				$this->container->get('templating')->render($view),
 				'text/html'
 			);
 	}
