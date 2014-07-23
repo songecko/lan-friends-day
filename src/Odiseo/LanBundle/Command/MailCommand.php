@@ -1,4 +1,5 @@
 <?php
+
 namespace Odiseo\LanBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -19,8 +20,68 @@ class MailCommand extends ContainerAwareCommand
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		//Check if the campaign is active
-		$text = "Test";
-		$output->writeln($text);
+		$dm = $this->getContainer()->get('doctrine')->getManager();
+		 
+		//get the current configuration
+		$configurations = $this->getContainer()->get('lan.repository.configuration')->findAll();
+		
+		if(isset($configurations[0]))
+			$configuration = $configurations[0];
+		
+		if(!$configuration)
+		{
+			$output->writeln("Unable to get the configuration object");
+			return;
+		}
+		
+		$beginMailSended = $configuration->getBeginMailSended();
+		$endMailSended = $configuration->getEndMailSended();
+		
+		//If the campaign is active and the begin email never sended 
+		if($configuration->isCampaignActive() && $beginMailSended == false)
+		{
+			//Send the begin email to all users
+			$output->writeln("Send BEGIN email to all users...");
+			$this->sendEmail(true);
+			
+			//Save the configuration
+			$configuration->setBeginMailSended(true);
+			$configuration->setEndMailSended(false);
+			$dm->flush();
+		}
+		//If the campaign is finished and the end email never sended
+		else if ($configuration->isCampaignFinished() && $endMailSended == false)
+		{
+			//Send the end email to all users
+			$output->writeln("Send END email to all users...");
+			$this->sendEmail(false);
+			
+			//Save the configuration
+			$configuration->setEndMailSended(true);
+			$configuration->setBeginMailSended(false);
+			$dm->flush();
+		}else {
+			//Nothing to do
+			$output->writeln("Nothing to do");
+		}
+	}
+	
+	public function sendEmail($isBeginEmail)
+	{
+		$sendMailer = $this->getContainer()->get('lan.send.mailer');
+		$userRepository = $this->getContainer()->get('lan.repository.user');
+		
+		$registeredUsers = $userRepository->getRegisteredUsers();
+		
+		foreach ($registeredUsers as $user)
+		{
+			if($isBeginEmail)
+			{
+				$sendMailer->sendBeginEmail($user);
+			}else 
+			{
+				$sendMailer->sendEndEmail($user);
+			}
+		}
 	}
 }
