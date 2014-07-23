@@ -14,8 +14,8 @@ class LoadConfigurationData extends DataFixture
     	$configuration = new Configuration();
     	$configuration->setDateBegin(new \DateTime('now + 3 days'));
     	$configuration->setDateEnd(new \DateTime('now + 5 days'));
-    	$configuration->setBeginMailSended('false');
-    	$configuration->setEndMailSended('false');
+    	$configuration->setBeginMailSended(false);
+    	$configuration->setEndMailSended(false);
     	$manager->persist($configuration);
     	
     	$manager->flush();

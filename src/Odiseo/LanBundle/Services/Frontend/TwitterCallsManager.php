@@ -62,8 +62,8 @@ class TwitterCallsManager {
 		$url = 'https://api.twitter.com/1.1/friendships/lookup.json';
 		$requestMethod = 'GET';
 		$twitter = new TwitterAPIExchange($settings);
-		$res = json_decode( $twitter->setGetfield('?screen_name='.$sScreen_name_users)->buildOauth($url, $requestMethod)->performRequest());
-		
+		$response = $twitter->setGetfield('?screen_name='.$sScreen_name_users)->buildOauth($url, $requestMethod)->performRequest();
+		$res = json_decode( $response );
 		foreach ( $res as  $value ){
 			if ( !($value->connections[0] == 'followed_by')  && !( isset( $value->connections[1] ) &&    $value->connections[1] == 'followed_by') ){
 				return false;

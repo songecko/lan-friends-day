@@ -16,7 +16,7 @@ class TwitterUserProvider extends BaseClass
         $username = $response->getUsername();
         //on connect - get the access token and the user ID
         $service = $response->getResourceOwner()->getName();
- 
+        
         $setter = 'set'.ucfirst($service);
         $setter_id = $setter.'Id';
         $setter_token = $setter.'AccessToken';
@@ -41,7 +41,7 @@ class TwitterUserProvider extends BaseClass
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
         $username = $response->getUsername();
-        $attr = $response->getResponse();
+        $attr = $response->getResponse(); 
         
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
         
@@ -66,6 +66,10 @@ class TwitterUserProvider extends BaseClass
             $user->setEnabled(true);
             $user->setTwitterProfileImageUrl($twitterProfileImageUrl);
             $this->userManager->updateUser($user);
+            
+            $_SESSION['twitter_access_token'] = $response->getAccessToken();
+        	$_SESSION['twitter_token_secret'] = $response->getTokenSecret();
+            
             return $user;
         }
  
@@ -77,6 +81,8 @@ class TwitterUserProvider extends BaseClass
  
         //update access token
         $user->$setter($response->getAccessToken());
+        $_SESSION['twitter_access_token'] = $response->getAccessToken();
+        $_SESSION['twitter_token_secret'] = $response->getTokenSecret();
  
         return $user;
     }

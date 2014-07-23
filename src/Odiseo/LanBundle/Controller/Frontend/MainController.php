@@ -13,7 +13,7 @@ class MainController extends Controller
 {	
 	public function indexAction(Request $request) 
 	{
-		return $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig');
+		return $this->_haveToGoToIndex() ?  $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig')  :   $this->redirect($this->generateUrl('lan_plane')) ;
 	}
 	
 	public function internoAction()
@@ -28,7 +28,21 @@ class MainController extends Controller
 	
 	public function avionAction()
 	{
-		return $this->render('OdiseoLanBundle:Frontend/Main:avion.html.twig');
+		return $this->_haveToGoToIndex() ? $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage')) :  $this->render('OdiseoLanBundle:Frontend/Main:avion.html.twig') ;
+	}
+	
+	private function _haveToGoToIndex()
+	{
+		$configuration = null; 
+		$configurations = $this->get('lan.repository.configuration')->findAll();
+		if(isset($configurations[0]))
+			$configuration = $configurations[0];
+		
+		$user = $this->getUser();
+		if ( $user == null || !$user->isRegistered() || !$configuration || !$configuration->isCampaignActive() ){
+			return true;
+		}
+		return false;
 	}
 	
 	public function renderContentAction(Request $request) {
@@ -91,6 +105,11 @@ class MainController extends Controller
 	
 	public function sendTweetAction(Request $request)
 	{
+		if (  $this->_haveToGoToIndex() ){
+			$data = array('onError' => 'true', 'errors' => 'Ocurrió un error, intenta luego.');
+			return new JsonResponse($data);
+		}
+		
 		$callsManager = $this->get('lan.services.twittercallsmanager');
 		$formData = 	$request->get ( 'form_data' );
 		if ($formData != null ){
@@ -102,7 +121,7 @@ class MainController extends Controller
 				{
 				
 					$this->_saveTwitterUser( $sToTweet);
-					$tweets = json_decode($callsManager->updateUserStatus($sToTweet, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet'));
+					$tweets = json_decode($callsManager->updateUserStatus($sToTweet, $_SESSION['twitter_access_token'], $_SESSION['twitter_token_secret']));
 					
 					if (  isset($tweets->errors))
 					{
@@ -138,29 +157,31 @@ class MainController extends Controller
 	 */
 	private function _validateRulesForTweet($sToTweet)
 	{
-		if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
+		if(  strlen($sToTweet) <= 140 )
 		{
-			
-			$friends = TweetParser::getMentionedFriends($sToTweet);
-			if (count($friends) == 3 )
+		if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
 			{
-				if ( $this->_areDifferents($friends) ){
-					$callsManager = $this->get('lan.services.twittercallsmanager');
-					
-					if ($callsManager->isFollowingBy($friends, '1464708482-BBkQfAWzaZynYuVHCQ14yaydAgq2lXrEOeJgxaW','zAZhIm1giH5CgrKaEjNl7kBfsre1kTLP70ShGmiI5FAet') )
-						return null;
-					else {
-						return "Los amigos citados te deben seguir.";
+				$friends = TweetParser::getMentionedFriends($sToTweet);
+				if (count($friends) == 3 )
+				{
+					if ( $this->_areDifferents($friends) ){
+						$callsManager = $this->get('lan.services.twittercallsmanager');
+						
+						if ($callsManager->isFollowingBy($friends, $_SESSION['twitter_access_token'], $_SESSION['twitter_token_secret']) )
+							return null;
+						else {
+							return "Los amigos citados te deben seguir.";
+						}
+					}
+					else{
+						return 'Debes citar 3 amigos diferentes.';
 					}
 				}
-				else{
-					return 'Debes citar 3 amigos diferentes.';
-				}
-				
+				else return 'Debes citar 3 amigos diferentes.';
 			}
-			else return 'Debes citar 3 amigos diferentes.';
+			else  return 'Debes citar el hashtag "#AmigosLan". ';
 		}
-		else  return 'Debe citar el hashtag "AmigosLan". ';
+		else return 'El tweet no puede superar los 140 caracteres. ';
 	}
 	
 	private function _areDifferents($friends){

@@ -13,15 +13,15 @@ class LoadTwittersData extends DataFixture
     public function load(ObjectManager $manager)
     {
     	/** USERS **/
-    	$user = $manager->getRepository('OdiseoLanBundle:User')->findOneByUsername('user');
+    	/*$user = $manager->getRepository('OdiseoLanBundle:User')->findOneByUsername('user');
     	
     	/** TWITTERS **/
-    	$twitter = new TwitterUser();
+    	/*$twitter = new TwitterUser();
     	$twitter->setUser($user);
     	$twitter->setTwitter($this->faker->text);
     	$manager->persist($twitter);
 
-        $manager->flush();
+        $manager->flush();*/
     }
     
     public function getOrder()

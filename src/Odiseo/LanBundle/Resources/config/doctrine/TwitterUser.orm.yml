@@ -32,3 +32,4 @@ Odiseo\LanBundle\Entity\TwitterUser:
                 name: user_id
                 referencedColumnName: id
                 onDelete: CASCADE
+                nullable: false
