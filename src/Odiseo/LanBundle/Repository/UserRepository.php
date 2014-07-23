@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Odiseo\LanBundle\Repository;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -16,7 +15,6 @@ class UserRepository extends EntityRepository
         $this->applySorting($queryBuilder, $orderBy);
         return $this->getPaginator($queryBuilder);
     }
-    
 
     public function lastUserWhoTweets(){
     	$queryBuilder = $this->getCollectionQueryBuilder();
@@ -27,5 +25,11 @@ class UserRepository extends EntityRepository
     	return $queryBuilder->getQuery()->getResult();
     }
     
-
+    public function getRegisteredUsers()
+    {
+    	$queryBuilder = $this->getCollectionQueryBuilder();
+    	$queryBuilder->where($this->getAlias().'.dni IS NOT NULl');
+    
+    	return $queryBuilder->getQuery()->getResult();
+    }
 }

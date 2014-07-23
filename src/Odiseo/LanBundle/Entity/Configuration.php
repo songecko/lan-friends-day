@@ -75,4 +75,9 @@ class Configuration
     		(strtotime("now") < $this->getDateEnd()->format('U'))
 		);
     }
+    
+    public function isCampaignFinished()
+    {
+    	return (strtotime("now") > $this->getDateEnd()->format('U'));
+    }
 }
