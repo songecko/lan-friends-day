@@ -29,7 +29,7 @@ class MainController extends Controller
 		if(isset($configurations[0]))
 			$configuration = $configurations[0];
 		
-		if( $configuration->isCampaignActive() )
+		if( $configuration->isCampaignActive() || $configuration->isCampaignFinished() )
 		{
 			return new Response();
 		}else 
