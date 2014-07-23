@@ -21,17 +21,13 @@ class SendMailer
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
 		$view = 'OdiseoLanBundle:Frontend/Mailer:registerEmail.html.twig';
-		
-		$this->getMessage($view, $email)
+		$message = $this->getMessage($view, $email)
 			->setSubject($fullname.', ya estás registrado en la app del Mes del Amigo LAN!');
 		
-		try {
-			$this->container->get('mailer')->send($this->message);
-		}
-		catch (\Exception $e) 
-		{
-			throw $e;
-		}
+		$failures = array();
+		$this->container->get('mailer')->send($message, $failures);
+		
+		return $failures;
 	}
 	
 	public function sendBeginMail(User $user)
@@ -39,17 +35,13 @@ class SendMailer
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
 		$view = 'OdiseoLanBundle:Frontend/Mailer:beginEmail.html.twig';
-	
-		$this->getMessage($view, $email)
-			->setSubject($fullname.', ya ha comenzado la promoción!');
+		$message = $this->getMessage($view, $email)
+						->setSubject($fullname.', ya ha comenzado la promoción!');
 		
-		try {
-			$this->container->get('mailer')->send($this->message);
-		}
-		catch (\Exception $e) 
-		{
-			throw $e;
-		}
+		$failures = array();
+		$this->container->get('mailer')->send($message, $failures);
+		
+		return $failures;
 	}
 	
 	public function sendEndMail(User $user)
@@ -57,17 +49,13 @@ class SendMailer
 		$fullname = $user->getFullName();
 		$email = $user->getMail();
 		$view = 'OdiseoLanBundle:Frontend/Mailer:endEmail.html.twig';
-	
-		$this->getMessage($view, $email)
+		$message = $this->getMessage($view, $email)
 			->setSubject($fullname.', ya ha finalizado la promoción!');
-	
-		try {
-			$this->container->get('mailer')->send($this->message);
-		}
-		catch (\Exception $e) 
-		{
-			throw $e;
-		}
+		
+		$failures = array();
+		$this->container->get('mailer')->send($message, $failures);
+		
+		return $failures;
 	}
 	
 	private function getMessage($view, $emailTo)
@@ -77,7 +65,7 @@ class SendMailer
 			->setFrom(array('noreply@amigoslan.com' => 'Amigos Lan'))
 			->setTo($emailTo)
 			->setBody(
-				$this->container->get('templating')->render($view),
+				'test',
 				'text/html'
 			);
 	}

@@ -77,26 +77,35 @@ class MailCommand extends ContainerAwareCommand
 		$total = count($registeredUsers);
 		$sended = 0;
 		
+		$returnString = "";
+		
 		foreach ($registeredUsers as $user)
 		{
-			try 
+			$failures = array();
+			
+			if($isBeginEmail)
 			{
-				if($isBeginEmail)
-				{
-					$sendMailer->sendBeginMail($user);
-				}else 
-				{
-					$sendMailer->sendEndMail($user);
-				}
-				
-				$sended++;
+				$failures = $sendMailer->sendBeginMail($user);
+			}else 
+			{
+				$failures = $sendMailer->sendEndMail($user);
 			}
-			catch (\Exception $e)
+				
+			if(count($failures) > 0)
 			{
+				foreach ($failures as $failureEmail)
+				{
+					$returnString .= "- failed to -> ".$failureEmail."\n";
+				}
+			}else 
+			{
+				$sended++;					
 			}
 		}
 		
-		return "Sended ".$sended."/".$total." emails.";
+		$returnString .= "Sended ".$sended."/".$total." emails.";
+		
+		return $returnString;
 	}
 	
 	protected function getFormatedMessage($message)
