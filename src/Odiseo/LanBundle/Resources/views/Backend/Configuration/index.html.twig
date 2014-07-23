@@ -16,9 +16,6 @@
 {% endblock %}
 
 {% block content %}
-<h2 class="page-header">
-	{{ buttons.create(path('odiseo_lan_configuration_create'), 'Nuevo') }}
-</h2>
 
 {{ list(configurations)  }}
 {{ pagination(configurations) }}

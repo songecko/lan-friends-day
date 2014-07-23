@@ -23,8 +23,13 @@
 				<td>{{ twitteruser.createdAt|date("d-m-Y") }}</td>
 				<td>
 					<div class="pull-right">
-	                    {{ buttons.delete(path('odiseo_lan_twitteruser_delete', {'id': twitteruser.id})) }}
-	                </div>
+						<form action="{{ path('odiseo_lan_twitteruser_delete', {'id': twitteruser.id}) }}" onsubmit="return confirm('Estas seguro?')" method="post" style="display: inline;">
+    						<input type="hidden" name="_method" value="DELETE">
+    						<button class="btn btn-danger">
+        						<i class="icon-trash"></i><span>Eliminar</span>
+    						</button>
+						</form>	   
+				    </div>
 				</td>
 			</tr>
 	        {% endfor %}

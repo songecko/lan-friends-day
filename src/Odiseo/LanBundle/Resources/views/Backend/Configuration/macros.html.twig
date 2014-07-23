@@ -9,22 +9,33 @@
 	<div class="box-body table-responsive no-padding">
 		<table class="table table-hover"><tbody>
 			<tr>
-				<th>ID</th>
-				<th>Habilitado?</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Fin</th>
+				<th>Inició envio de mail</th>
+				<th>Finalizó envio de mail</th>
 				<th></th>
 			</tr>
 			{% for configuration in configurations %}
 	        <tr>
-				<td>{{ configuration.id }}</td>
-				{% if(configuration.isAvailable) %}
-					<td>Si</td>
-				{% else %}
-					<td>No</td>
-				{% endif %}
+				<td>{{ configuration.dateBegin|date("d-m-Y H:i") }}</td>
+				<td>{{ configuration.dateEnd|date("d-m-Y H:i") }}</td>
+				<td>
+					{% if(configuration.beginMailSended) %}
+						<span class="label label-success">Si</span>
+					{% else %}
+						<span class="label label-danger">No</span>
+					{% endif %}
+				</td>
+				<td>
+					{% if(configuration.endMailSended) %}
+						<span class="label label-success">Si</span>
+					{% else %}
+						<span class="label label-danger">No</span>
+					{% endif %}
+				</td>
 				<td>
 					<div class="pull-right">
 	                    {{ buttons.edit(path('odiseo_lan_configuration_update', {'id': configuration.id})) }}
-	                    {{ buttons.delete(path('odiseo_lan_configuration_delete', {'id': configuration.id})) }}
 	                </div>
 				</td>
 			</tr>

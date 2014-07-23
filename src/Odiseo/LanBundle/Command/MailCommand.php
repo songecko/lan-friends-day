@@ -12,26 +12,15 @@ class MailCommand extends ContainerAwareCommand
 	protected function configure()
 	{
 		$this
-		->setName('send:mail')
-		->setDescription('Send Mail')
-		->addArgument('name', InputArgument::OPTIONAL, 'Nombre del destinatario')
-		->addOption('yell', null, InputOption::VALUE_NONE, 'Letras en mayusculas')
+			->setName('send:mail')
+			->setDescription('Send Mail')
 		;
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$name = $input->getArgument('name');
-		if ($name) {
-			$text = 'Hola '.$name.' el comando se envio correctamente';
-		} else {
-			$text = 'Comando enviado correctamente';
-		}
-
-		if ($input->getOption('yell')) {
-			$text = strtoupper($text);
-		}
-
+		//Check if the campaign is active
+		$text = "Test";
 		$output->writeln($text);
 	}
 }

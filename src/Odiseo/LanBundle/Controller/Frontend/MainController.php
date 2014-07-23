@@ -138,7 +138,7 @@ class MainController extends Controller
 	 */
 	private function _validateRulesForTweet($sToTweet)
 	{
-		if (TweetParser::existHashTag($sToTweet, "TEST"))
+		if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
 		{
 			
 			$friends = TweetParser::getMentionedFriends($sToTweet);
@@ -198,6 +198,5 @@ class MainController extends Controller
 		$twitterUser->setTwitter($sToTweet);
 		$em->persist($twitterUser);
 		$em->flush();
-		ld($twitterUser);
 	}
 }

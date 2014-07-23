@@ -82,6 +82,7 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Odiseo\LanBundle\Entity\TwitterUser
+                repository: Odiseo\LanBundle\Repository\TwitterUserRepository
         lan.configuration:
             driver: doctrine/orm
             classes:

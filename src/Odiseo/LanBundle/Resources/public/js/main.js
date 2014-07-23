@@ -125,6 +125,59 @@ $(document).ready(function()
 		}
 	});
 	
+	
 
+	function refreshPassengers(){
+		 if ( $('#flight-passengers').length > 0 )
+		 { 
+			$.ajax({
+		        type: "POST",
+		        url: $('#flight-passengers').data('refreshUrl'),
+		    }).success(function( data ){
+		        setTimeout(function(){refreshPassengers();}, 10000);
+		        seats = data.seatsImageUrl;
+				
+				$.each(seats, function( index, urlImage ) {
+						var idDiv = '#position-' + index;
+						var img = $('<img>'); 
+						img.attr('src', urlImage);
+						console.log(idDiv);
+						$(idDiv).html(img.get(0));
+				});
+				
+				tweets = data.tweets;
+				divMedias = $('.box_tweets .media');
+				$.each(tweets, function( index, tweet ) {
+					$(divMedias[index]).find('img').attr('src', tweet['imageUrl']);
+					$(divMedias[index]).find('p').html(tweet['tweet']);
+					$(divMedias[index]).find('h4').html('@' + tweet['screenName'] + '	');
+					$(divMedias[index]).find('h4').append( $('<span>').html( jQuery.timeago( new Date(tweet['timeAgo'].date )  ) ) );
+					console.log($(divMedias[index]).find('span'));
+					$(divMedias[index]).css('display' , 'block');
+				});
+		    
+		    });
+
+		 }
+	};
+	refreshPassengers();
+	
+	jQuery.timeago.settings.strings = {
+			   prefixAgo: "hace",
+			   prefixFromNow: "dentro de",
+			   suffixAgo: "",
+			   suffixFromNow: "",
+			   seconds: "menos de un minuto",
+			   minute: "un minuto",
+			   minutes: "unos %d minutos",
+			   hour: "una hora",
+			   hours: "%d horas",
+			   day: "un día",
+			   days: "%d días",
+			   month: "un mes",
+			   months: "%d meses",
+			   year: "un año",
+			   years: "%d años"
+			};
 	
 });
