@@ -8,6 +8,7 @@ use Odiseo\LanBundle\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Odiseo\LanBundle\Utils\TweetParser;
 use Odiseo\LanBundle\Entity\TwitterUser;
+use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends Controller 
 {	
@@ -23,7 +24,18 @@ class MainController extends Controller
 	
 	public function countdownAction()
 	{
-		return $this->render('OdiseoLanBundle:Frontend/Main:countdown.html.twig');
+		$configuration = null;
+		$configurations = $this->get('lan.repository.configuration')->findAll();
+		if(isset($configurations[0]))
+			$configuration = $configurations[0];
+		
+		if( $configuration->isCampaignActive() )
+		{
+			return new Response();
+		}else 
+		{
+			return $this->render('OdiseoLanBundle:Frontend/Main:countdown.html.twig', array('configuration' => $configuration));
+		}
 	}
 	
 	public function avionAction()

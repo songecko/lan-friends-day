@@ -64,20 +64,23 @@ function sendForm( form )
 
 $(document).ready(function() 
 {
-	$('.countdown').countdown({
-		date: $('.countdown').data('endDate'),
-		render: function(data) 
-		{
-			$('.countdown .day .number').html(data.days);
-			$('.countdown .hour .number').html(data.hours);
-			$('.countdown .minute .number').html(data.min);
-			$('.countdown .second .number').html(data.sec);
-		},
-		onEnd: function() 
-		{
-            alert('Empezó la promoción!');
-		}
-	});
+	if($('.countdown').length > 0)
+	{
+		$('.countdown').countdown({
+			date: $('.countdown').data('endDate'),
+			render: function(data) 
+			{
+				$('.countdown .day .number').html(data.days);
+				$('.countdown .hour .number').html(data.hours);
+				$('.countdown .minute .number').html(data.min);
+				$('.countdown .second .number').html(data.sec);
+			},
+			onEnd: function() 
+			{
+				location.reload();
+			}
+		});
+	}
 	
 	$("#register-form").validate({
 		invalidHandler: function(event, validator)
