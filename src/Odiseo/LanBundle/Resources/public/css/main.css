@@ -85,8 +85,8 @@ h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spac
 .box_twitter .btn { background:none; border-radius:3px; border:solid 2px #a5c1cf;  font-family: 'Roboto', sans-serif; color:#a5c1cf; font-weight:500; padding:10px 0;}
 .box_twitter .btn:hover {  border:solid 2px #fff;color:#4a839f; background:#fff;}
 
-.box_tweets { padding:30px; max-height:600px; overflow:scroll; overflow-x: hidden;}
-.box_tweets .media { border-bottom:dotted 1px #c2c6ca; padding-bottom:20px; margin-bottom:20px;}
+.box_tweets { padding:30px; max-height:585px; overflow:scroll; overflow-x: hidden;}
+.box_tweets .media { border-bottom:dotted 1px #c2c6ca; padding-bottom:20px; margin-bottom:20px; display:none; }
 .box_tweets .media .media-object { max-width:50px; border:solid 2px #fff;}
 .box_tweets .media .media-heading { font-size:14px; color:#378cb3}
 .box_tweets .media .media-heading span { font-size:11px;  font-weight:normal; color:#8c8c8c}
