@@ -63,10 +63,12 @@
 					<img class="img-circle" src="{{ app.user.twitterProfileImageUrl }}" />
 				</div>
 				{% else %}
+				{% block login_button_top %}
 				<a href="{{ hwi_oauth_login_url('twitter') }}" class="btn btn-primary signinButton">
 		      		<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
       				<strong>Accedé con Twitter para enterarte</strong> antes que nadie cuando empiece el concurso
       			</a>
+      			{% endblock %}
 				{% endif %}
 			</div>
 		</nav>
