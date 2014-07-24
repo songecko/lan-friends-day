@@ -17,7 +17,7 @@
       			<i class="glyphicon glyphicon-ok"></i>
       			<strong>Hacé Check In </strong> y subite al avión
       		</a>
-      		{%   else %}
+      		{%   else if not app.user %}
       		<!-- login -->
       		<a href="{{ hwi_oauth_login_url('twitter') }}" class="btn btn-primary loginButton">
       			<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
