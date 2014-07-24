@@ -174,10 +174,9 @@ class MainController extends Controller
 		{
 			if (TweetParser::existHashTag($sToTweet, "AmigosLan"))
 			{
-				$friends = TweetParser::getMentionedFriends($sToTweet);
-				if (count($friends) == 3 )
-				{
-					if ( $this->_areDifferents($friends) ){
+					$friends = TweetParser::getMentionedFriends($sToTweet);
+					if (count($friends) == 3 )
+					{
 						return null;
 					}
 					else{
@@ -185,8 +184,6 @@ class MainController extends Controller
 					}
 					
 				}
-				else return 'Debes citar 3 amigos diferentes.';
-			}
 			else  return 'Debe citar el hashtag "#AmigosLan". ';
 		}
 		else return 'El tweet no puede superar los 140 caracteres. ';
