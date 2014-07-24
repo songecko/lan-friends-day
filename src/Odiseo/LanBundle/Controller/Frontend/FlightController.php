@@ -13,42 +13,46 @@ class FlightController extends Controller
 {	
 	public function showPassengersAction(Request $request) 
 	{
-		//Get seats
-		$repository = $this->get('lan.repository.user');
-		$userRecords = $repository->lastUserWhoTweets();
+		$em = $this->getDoctrine()->getManager ();
+		$repositoryUser = $em->getRepository('OdiseoLanBundle:User');
+		
+		$repositoryTwitterUser = $this->get('lan.repository.twitteruser');
+		
+		
+		$records = $repositoryTwitterUser->lastUserWhoTweets();
 		$seat = array();
- 		foreach ($userRecords as $record) 
- 		{
- 			if(is_array($record) && isset($record[0]))
- 				$record = $record[0];
- 			
- 			if($record instanceof User)
+
+		foreach ($records as &$record) {
+		
+		if(is_array($record) && isset($record[0]))
+			
+			$userRecord = $repositoryUser->findOneBy(array('id' => $record['userId']));
+			
+			if($userRecord instanceof User)
  			{
- 				$seat[] = $record->getTwitterProfileImageUrl();
- 			}
+ 				
+			$seat[] = $userRecord->getTwitterProfileImageUrl();
+			}
 		}
 		$data = array('seatsImageUrl' => $seat);
 		
 		
-		//Get tweets list
-		$repository = $this->get('lan.repository.twitteruser');
 		$max_size_result = $this->container->getParameter('max_size_result_twitter');
-		$userTwitterRecords = $repository->findLastTweets($max_size_result);
-		
-		
+		$userTwitterRecords = $repositoryTwitterUser->findLastTweets($max_size_result);
 		$listTweets = array();
 		
-		foreach ($userTwitterRecords as &$record) {
-			
-			$tweets = array('imageUrl' => $record->getUser()->getTwitterProfileImageUrl(),
-							'tweet' => $record->getTwitter() ,
-							'screenName' => $record->getUser()->getUsername(),
-							'timeAgo' =>	 $record->getCreatedAt());
+		foreach ($userTwitterRecords as &$twiTrecord) {
+			$tweets = array('imageUrl' => $twiTrecord->getUser()->getTwitterProfileImageUrl(),
+							'tweet' => $twiTrecord->getTwitter() ,
+							'screenName' => $twiTrecord->getUser()->getUsername(),
+							'timeAgo' =>	 $twiTrecord->getCreatedAt());
 			$listTweets[] = $tweets;
 		}
 		
 		$data = array('seatsImageUrl' => $seat,  'tweets' =>  $listTweets);
 		return new JsonResponse($data);
+			
+	
 	}
 
 }
