@@ -80,7 +80,7 @@ class SendMailer
 			->setFrom(array('noreply@amigoslan.com' => 'Amigos Lan'))
 			->setTo($emailTo)
 			->setBody(
-				$this->container->get('templating')->render($view),
+				$this->container->get('templating')->render($view, array('request' => $this->container->get('request'))),
 				'text/html'
 			);
 	}
