@@ -55,7 +55,7 @@ class MainController extends Controller
 		$configuration = $this->getConfiguration();
 		$user = $this->getUser();
 		
-		if( $configuration->isCampaignFinished() || ( $configuration->isCampaignActive && (!$user || !$user->isRegistered())))
+		if( $configuration->isCampaignFinished() || ( $configuration->isCampaignActive() && (!$user || !$user->isRegistered())))
 		{
 			return new Response();
 		}else 
