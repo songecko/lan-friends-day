@@ -58,6 +58,20 @@ class SendMailer
 		return $failures;
 	}
 	
+	public function sendRemainderMail(User $user)
+	{
+		$fullname = $user->getFullName();
+		$email = $user->getMail();
+		$view = 'OdiseoLanBundle:Frontend/Mailer:remainderEmail.html.twig';
+	
+		$message = $this->getMessage($view, $email)
+			->setSubject('¡A las 16hs finaliza! Queda poco tiempo para subirte al avión.');
+	
+		$failures = $this->send($message);
+	
+		return $failures;
+	}
+	
 	protected function send($message)
 	{
 		$failures = array();
@@ -72,6 +86,8 @@ class SendMailer
 		
 		return $failures;
 	}
+	
+	
 	
 	private function getMessage($view, $emailTo)
 	{

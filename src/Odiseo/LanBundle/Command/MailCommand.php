@@ -15,6 +15,7 @@ class MailCommand extends ContainerAwareCommand
 		$this
 			->setName('send:mail')
 			->setDescription('Send Mail')
+			->addOption('remainder', null, InputOption::VALUE_NONE, 'If set, only will send the remainder email to all users.')
 		;
 	}
 
@@ -38,33 +39,73 @@ class MailCommand extends ContainerAwareCommand
 		$beginMailSended = $configuration->getBeginMailSended();
 		$endMailSended = $configuration->getEndMailSended();
 		
-		//If the campaign is active and the begin email never sended 
-		if($configuration->isCampaignActive() && $beginMailSended == false)
+		if ($input->getOption('remainder')) {
+			$output->writeln($this->getFormatedMessage("Send REMAINDER email to all users."));
+			$output->writeln($this->sendRemainderEmail());
+		}else 
 		{
-			//Send the begin email to all users
-			$output->writeln($this->getFormatedMessage("Send BEGIN email to all users."));
-			$output->writeln($this->sendEmail(true));
-			
-			//Save the configuration
-			$configuration->setBeginMailSended(true);
-			$configuration->setEndMailSended(false);
-			$dm->flush();
+		
+			//If the campaign is active and the begin email never sended 
+			if($configuration->isCampaignActive() && $beginMailSended == false)
+			{
+				//Send the begin email to all users
+				$output->writeln($this->getFormatedMessage("Send BEGIN email to all users."));
+				$output->writeln($this->sendEmail(true));
+				
+				//Save the configuration
+				$configuration->setBeginMailSended(true);
+				$configuration->setEndMailSended(false);
+				$dm->flush();
+			}
+			//If the campaign is finished and the end email never sended
+			else if ($configuration->isCampaignFinished() && $endMailSended == false)
+			{
+				//Send the end email to all users
+				$output->writeln($this->getFormatedMessage("Send END email to all users."));
+				$output->writeln($this->sendEmail(false));
+				
+				//Save the configuration
+				$configuration->setEndMailSended(true);
+				$configuration->setBeginMailSended(false);
+				$dm->flush();
+			}else {
+				//Nothing to do
+				$output->writeln($this->getFormatedMessage("Nothing to do"));
+			}
 		}
-		//If the campaign is finished and the end email never sended
-		else if ($configuration->isCampaignFinished() && $endMailSended == false)
+	}
+	
+	public function sendRemainderEmail()
+	{
+		$sendMailer = $this->getContainer()->get('lan.send.mailer');
+		$userRepository = $this->getContainer()->get('lan.repository.user');
+	
+		$registeredUsers = $userRepository->getRegisteredUsers();
+	
+		$total = count($registeredUsers);
+		$sended = 0;
+	
+		$returnString = "";
+	
+		foreach ($registeredUsers as $user)
 		{
-			//Send the end email to all users
-			$output->writeln($this->getFormatedMessage("Send END email to all users."));
-			$output->writeln($this->sendEmail(false));
-			
-			//Save the configuration
-			$configuration->setEndMailSended(true);
-			$configuration->setBeginMailSended(false);
-			$dm->flush();
-		}else {
-			//Nothing to do
-			$output->writeln($this->getFormatedMessage("Nothing to do"));
+			$failures = $sendMailer->sendRemainderMail($user);
+	
+			if(count($failures) > 0)
+			{
+				foreach ($failures as $failureEmail)
+				{
+					$returnString .= "- failed to -> ".$failureEmail."\n";
+				}
+			}else
+			{
+				$sended++;
+			}
 		}
+	
+		$returnString .= "Sended ".$sended."/".$total." emails.";
+	
+		return $returnString;
 	}
 	
 	public function sendEmail($isBeginEmail)
