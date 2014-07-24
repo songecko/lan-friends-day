@@ -19,12 +19,7 @@ class MailCommand extends ContainerAwareCommand
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$context = $this->getContainer()->get('router')->getContext();
-		$context->setHost('test.amigoslan.com');
-		$context->setScheme('http');
-		$context->setBaseUrl('/');
-		
+	{	
 		$configuration = null;
 		$dm = $this->getContainer()->get('doctrine')->getManager();
 		 
