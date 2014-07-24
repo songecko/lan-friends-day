@@ -212,13 +212,7 @@ class MainController extends Controller
 				if (count($friends) == 3 )
 				{
 					if ( $this->_areDifferents($friends) ){
-						$callsManager = $this->get('lan.services.twittercallsmanager');
-						
-						if ($callsManager->isFollowingBy($friends, $_SESSION['twitter_access_token'], $_SESSION['twitter_token_secret']) )
-							return null;
-						else {
-							return "Los amigos citados te deben seguir.";
-						}
+						return null;
 					}
 					else{
 						return 'Debes citar 3 amigos diferentes.';
