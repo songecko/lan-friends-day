@@ -148,12 +148,13 @@ $(document).ready(function()
 		        url: $('#flight-passengers').data('refreshUrl'),
 		    }).success(function( data ){
 		        setTimeout(function(){refreshPassengers();}, 5000);
-		        seats = data.seatsImageUrl;
+		        seats = data.seats;
 				
-				$.each(seats, function( index, urlImage ) {
-						var idDiv = '#position-' + index;
+				$.each(seats, function( index, seat ) {
+				var idDiv = '#position-' + index;
 						var img = $('<img>'); 
-						img.attr('src', urlImage);
+						img.attr('src', seat['urlImage']);
+						img.attr('title', seat['twitterName']);
 						console.log(idDiv);
 						$(idDiv).html(img.get(0));
 				});

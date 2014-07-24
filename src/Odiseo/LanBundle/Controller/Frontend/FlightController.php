@@ -20,7 +20,7 @@ class FlightController extends Controller
 		
 		
 		$records = $repositoryTwitterUser->lastUserWhoTweets();
-		$seat = array();
+		$seats = array();
 
 		foreach ($records as &$record) {
 		
@@ -30,11 +30,11 @@ class FlightController extends Controller
 			
 			if($userRecord instanceof User)
  			{
- 				
-			$seat[] = $userRecord->getTwitterProfileImageUrl();
+ 			$seatData = array('urlImage' => $userRecord->getTwitterProfileImageUrl(), 'twitterName' => $userRecord->getUsername() );
+			$seats[] = $seatData;
 			}
 		}
-		$data = array('seatsImageUrl' => $seat);
+		
 		
 		
 		$max_size_result = $this->container->getParameter('max_size_result_twitter');
@@ -49,7 +49,7 @@ class FlightController extends Controller
 			$listTweets[] = $tweets;
 		}
 		
-		$data = array('seatsImageUrl' => $seat,  'tweets' =>  $listTweets);
+		$data = array('seats' => $seats,  'tweets' =>  $listTweets);
 		return new JsonResponse($data);
 			
 	
