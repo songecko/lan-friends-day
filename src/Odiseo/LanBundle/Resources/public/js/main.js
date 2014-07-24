@@ -48,11 +48,13 @@ function sendForm( form )
 	            	{	            		
 	            		$('.twitterMessage p').html(data.errors);
 	            		$('.twitterMessage').addClass('error');
+	            		$('.twitterMessage').removeClass('sucess');
 	            	}else
 	            	{
 	            		$('#form_data_tweet').val('#AmigosLan ');
 	            		$('.twitterMessage p').html(data.message);
 	            		$('.twitterMessage').addClass('sucess');
+	            		$('.twitterMessage').removeClass('error');
 	            		
 	            	}
 	            }
