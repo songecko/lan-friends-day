@@ -1,4 +1,4 @@
-<div class="row countdown" data-end-date="{{ configuration.getDateBegin|date("F d, Y H:i:s") }}">
+<div class="row countdown" data-end-date="{{ configuration.isCampaignActive ? configuration.getDateEnd|date("F d, Y H:i:s") : configuration.getDateBegin|date("F d, Y H:i:s") }}">
 	<div class="timer clearfix">
 		<div class="col-xs-3 day"> dias<span class="number">-</span> </div>
 		<div class="col-xs-3 hour"> horas<span class="number">-</span> </div>

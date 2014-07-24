@@ -75,10 +75,22 @@ h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spac
 .footer a { font-size:10px; color:#fff; margin:0 10px;}
 
 
+.avion .countdown {
+	width: 210px;
+	position: absolute;
+	top: 40px;
+	left: 75px;
+}
+
+.avion .countdown .timer span {
+	height: 60px;
+	line-height: 60px;
+	font-size: 30px;
+}
 
 .container-fluid { padding:0;}
 
-.bg_avion { background:url(../images/avion_m.jpg) no-repeat center bottom; height:100%; min-height:780px; }
+.bg_avion { background:url(../images/avion_l.jpg) no-repeat center bottom; height:100%; min-height:780px; }
 .col-twitter { padding:0;}
 .box_twitter { background:#4a839f; padding:30px 30px 20px 30px;}
 .box_twitter textarea { padding:20px;}
@@ -153,5 +165,12 @@ body.inicio { background:#a8cff2}
 	
 h1 { font-size:34px;margin-bottom:30px;}
 h2 { margin-bottom:20px;}
+
+.avion .countdown {
+	width: 50%;
+	top: 242px;
+	left: 50%;
+	margin-left: -25%;
+}
 
 }

@@ -17,6 +17,10 @@ lan_interno:
 lan_plane:
     pattern: /avion
     defaults: { _controller: OdiseoLanBundle:Frontend/Main:avion }
+    
+lan_thanks:
+    pattern: /gracias
+    defaults: { _controller: OdiseoLanBundle:Frontend/Main:thanks }
         
 lan_flight_passengers:
     pattern: /flight-passengers

@@ -4,6 +4,8 @@
 {% block content %}
 <div class="container-fluid">
   <div class="col-sm-8 col-lg-9 bg_avion">
+  	{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
+  	
     <div class="users" id='flight-passengers' data-refresh-url="{{ path('lan_flight_passengers')}}"> 
      	  
 	    <div class="user position-1" id='position-0'></div>

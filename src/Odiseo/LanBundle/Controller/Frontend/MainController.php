@@ -12,9 +12,37 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends Controller 
 {	
+	protected $configuration = null;
+	
 	public function indexAction(Request $request) 
 	{
-		return $this->_haveToGoToIndex() ?  $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig')  :   $this->redirect($this->generateUrl('lan_plane')) ;
+		$configuration = $this->getConfiguration();
+		
+		//Go to end of campaign?
+		if($configuration->isCampaignFinished())
+		{
+			return $this->redirect($this->generateUrl('lan_thanks'));
+		}else //else
+		{
+			if($this->_haveToGoToIndex())
+			{
+				return $this->render('OdiseoLanBundle:Frontend/Main:index.html.twig');
+			}else 
+			{
+				return $this->redirect($this->generateUrl('lan_plane'));
+			}
+		}
+	}
+	
+	public function thanksAction()
+	{
+		$configuration = $this->getConfiguration();
+		if(!$configuration->isCampaignFinished())
+		{
+			return $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage'));
+		}
+		
+		return $this->render('OdiseoLanBundle:Frontend/Main:thanks.html.twig');
 	}
 	
 	public function internoAction()
@@ -24,12 +52,9 @@ class MainController extends Controller
 	
 	public function countdownAction()
 	{
-		$configuration = null;
-		$configurations = $this->get('lan.repository.configuration')->findAll();
-		if(isset($configurations[0]))
-			$configuration = $configurations[0];
+		$configuration = $this->getConfiguration();
 		
-		if( $configuration->isCampaignActive() || $configuration->isCampaignFinished() )
+		if( $configuration->isCampaignFinished() )
 		{
 			return new Response();
 		}else 
@@ -43,15 +68,24 @@ class MainController extends Controller
 		return $this->_haveToGoToIndex() ? $this->redirect($this->generateUrl('odiseo_lan_frontend_homepage')) :  $this->render('OdiseoLanBundle:Frontend/Main:avion.html.twig') ;
 	}
 	
+	protected function getConfiguration()
+	{
+		if(!$this->configuration)
+		{
+			$configurations = $this->get('lan.repository.configuration')->findAll();
+			if(isset($configurations[0]))
+				$this->configuration = $configurations[0];
+		}
+		
+		return $this->configuration;
+	}
+	
 	private function _haveToGoToIndex()
 	{
-		$configuration = null; 
-		$configurations = $this->get('lan.repository.configuration')->findAll();
-		if(isset($configurations[0]))
-			$configuration = $configurations[0];
+		$configuration = $this->getConfiguration();
 		
 		$user = $this->getUser();
-		if ( $user == null || !$user->isRegistered() || !$configuration || !$configuration->isCampaignActive() ){
+		if ( $user == null || !$user->isRegistered() || !$configuration || !$configuration->isCampaignActive()){
 			return true;
 		}
 		return false;
@@ -142,7 +176,7 @@ class MainController extends Controller
 						return new JsonResponse($data);
 					}
 					//grabar tweet en la base de datos.
-					$data = array('onError' => 'false', 'message' => 'Gracias por participar!!');
+					$data = array('onError' => 'false', 'message' => 'Gracias por participar!');
 					return new JsonResponse($data);
 				}
 				else{
