@@ -24,12 +24,10 @@ class FlightController extends Controller
  			
  			if($record instanceof User)
  			{
- 				$seatData = array('urlImage' => $record->getTwitterProfileImageUrl(), 'screenName' => $record->getUsername() );
+ 				$seatData = array('urlImage' => $record->getTwitterProfileImageUrl(), 'twitterName' => $record->getUsername() );
 				$seats[] = $seatData;
  			}
-		}
-		$data = array('seatsImageUrl' => $seats);
-		
+		}		
 		
 		//Get tweets list
 		$repository = $this->get('lan.repository.twitteruser');
@@ -48,7 +46,7 @@ class FlightController extends Controller
 			$listTweets[] = $tweets;
 		}
 		
-		$data = array('seatsImageUrl' => $seats,  'tweets' =>  $listTweets);
+		$data = array('seats' => $seats,  'tweets' =>  $listTweets);
 		return new JsonResponse($data);
 	}
 
