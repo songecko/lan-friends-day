@@ -13,46 +13,43 @@ class FlightController extends Controller
 {	
 	public function showPassengersAction(Request $request) 
 	{
-		$em = $this->getDoctrine()->getManager ();
-		$repositoryUser = $em->getRepository('OdiseoLanBundle:User');
-		
-		$repositoryTwitterUser = $this->get('lan.repository.twitteruser');
-		
-		
-		$records = $repositoryTwitterUser->lastUserWhoTweets();
+		//Get seats
+		$repository = $this->get('lan.repository.user');
+		$userRecords = $repository->lastUserWhoTweets();
 		$seats = array();
-
-		foreach ($records as &$record) {
-		
-		if(is_array($record) && isset($record[0]))
-			
-			$userRecord = $repositoryUser->findOneBy(array('id' => $record['userId']));
-			
-			if($userRecord instanceof User)
+ 		foreach ($userRecords as $record) 
+ 		{
+ 			if(is_array($record) && isset($record[0]))
+ 				$record = $record[0];
+ 			
+ 			if($record instanceof User)
  			{
- 			$seatData = array('urlImage' => $userRecord->getTwitterProfileImageUrl(), 'twitterName' => $userRecord->getUsername() );
-			$seats[] = $seatData;
-			}
+ 				$seatData = array('urlImage' => $userRecord->getTwitterProfileImageUrl(), 'twitterName' => $userRecord->getUsername() );
+				$seats[] = $seatData;
+ 			}
 		}
+		$data = array('seatsImageUrl' => $seats);
 		
 		
-		
+		//Get tweets list
+		$repository = $this->get('lan.repository.twitteruser');
 		$max_size_result = $this->container->getParameter('max_size_result_twitter');
-		$userTwitterRecords = $repositoryTwitterUser->findLastTweets($max_size_result);
+		$userTwitterRecords = $repository->findLastTweets($max_size_result);
+		
+		
 		$listTweets = array();
 		
-		foreach ($userTwitterRecords as &$twiTrecord) {
-			$tweets = array('imageUrl' => $twiTrecord->getUser()->getTwitterProfileImageUrl(),
-							'tweet' => $twiTrecord->getTwitter() ,
-							'screenName' => $twiTrecord->getUser()->getUsername(),
-							'timeAgo' =>	 $twiTrecord->getCreatedAt());
+		foreach ($userTwitterRecords as &$record) {
+			
+			$tweets = array('imageUrl' => $record->getUser()->getTwitterProfileImageUrl(),
+							'tweet' => $record->getTwitter() ,
+							'screenName' => $record->getUser()->getUsername(),
+							'timeAgo' =>	 $record->getCreatedAt());
 			$listTweets[] = $tweets;
 		}
 		
-		$data = array('seats' => $seats,  'tweets' =>  $listTweets);
+		$data = array('seatsImageUrl' => $seats,  'tweets' =>  $listTweets);
 		return new JsonResponse($data);
-			
-	
 	}
 
 }
