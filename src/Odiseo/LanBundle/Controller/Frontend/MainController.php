@@ -53,8 +53,9 @@ class MainController extends Controller
 	public function countdownAction()
 	{
 		$configuration = $this->getConfiguration();
+		$user = $this->getUser();
 		
-		if( $configuration->isCampaignFinished() )
+		if( $configuration->isCampaignFinished() || ( $configuration->isCampaignActive && (!$user || !$user->isRegistered())))
 		{
 			return new Response();
 		}else 
