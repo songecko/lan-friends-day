@@ -13,17 +13,24 @@ class FlightController extends Controller
 {	
 	public function showPassengersAction(Request $request) 
 	{
-		
+		//Get seats
 		$repository = $this->get('lan.repository.user');
 		$userRecords = $repository->lastUserWhoTweets();
 		$seat = array();
- 		foreach ($userRecords as &$record) {
- 			$seat[] = $record->getTwitterProfileImageUrl();
+ 		foreach ($userRecords as $record) 
+ 		{
+ 			if(is_array($record) && isset($record[0]))
+ 				$record = $record[0];
+ 			
+ 			if($record instanceof User)
+ 			{
+ 				$seat[] = $record->getTwitterProfileImageUrl();
+ 			}
 		}
 		$data = array('seatsImageUrl' => $seat);
 		
 		
-
+		//Get tweets list
 		$repository = $this->get('lan.repository.twitteruser');
 		$max_size_result = $this->container->getParameter('max_size_result_twitter');
 		$userTwitterRecords = $repository->findLastTweets($max_size_result);
@@ -42,8 +49,6 @@ class FlightController extends Controller
 		
 		$data = array('seatsImageUrl' => $seat,  'tweets' =>  $listTweets);
 		return new JsonResponse($data);
-			
-	
 	}
 
 }

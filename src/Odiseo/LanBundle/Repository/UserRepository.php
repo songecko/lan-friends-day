@@ -17,11 +17,14 @@ class UserRepository extends EntityRepository
     }
 
     public function lastUserWhoTweets(){
-    	$queryBuilder = $this->getCollectionQueryBuilder();
-    	$queryBuilder->innerJoin($this->getAlias().'.twitters', 't');
-    	$queryBuilder->groupBy($this->getAlias().'.id');
-    	$queryBuilder->orderBy('t.createdAt','DESC');
+    	$queryBuilder = $this->createQueryBuilder($this->getAlias());
+    	$queryBuilder->select($this->getAlias().', MAX(t.createdAt) AS max_date');
+    	$queryBuilder->leftJoin($this->getAlias().'.twitters', 't');
+    	$queryBuilder->andWhere($this->getAlias().'.dni IS NOT NULL');
+    	$queryBuilder->groupBy('t.user');
+    	$queryBuilder->orderBy('max_date','DESC');
     	$queryBuilder->setMaxResults(19);
+    	
     	return $queryBuilder->getQuery()->getResult();
     }
     
