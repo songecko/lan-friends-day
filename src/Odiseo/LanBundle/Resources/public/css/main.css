@@ -78,8 +78,10 @@ h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spac
 .avion .countdown {
 	width: 210px;
 	position: absolute;
-	top: 40px;
-	left: 75px;
+	top: auto;
+	left: 50%;
+	bottom: 466px;
+	margin-left: -105px;
 }
 
 .avion .countdown .timer span {
