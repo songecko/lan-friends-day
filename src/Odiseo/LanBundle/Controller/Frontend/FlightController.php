@@ -24,7 +24,7 @@ class FlightController extends Controller
  			
  			if($record instanceof User)
  			{
- 				$seatData = array('urlImage' => $userRecord->getTwitterProfileImageUrl(), 'twitterName' => $userRecord->getUsername() );
+ 				$seatData = array('urlImage' => $record->getTwitterProfileImageUrl(), 'twitterName' => $record->getUsername() );
 				$seats[] = $seatData;
  			}
 		}
