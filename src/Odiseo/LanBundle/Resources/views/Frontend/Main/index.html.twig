@@ -9,7 +9,7 @@
 			
 			<br>
 			
-			{%   if app.user or not app.user.isRegistered  %}
+			{%   if app.user and not app.user.isRegistered  %}
       		<!-- register -->
 			{{ include('OdiseoLanBundle:Frontend/Main:registerForm.html.twig') }}
 			
