@@ -130,6 +130,14 @@ $(document).ready(function()
 		}
 	});
 	
+	$('#form_data_tweet').keypress(function(event) {
+	    // Check the keyCode and if the user pressed Enter (code = 13) 
+	    if (event.keyCode == 13) 
+	    {
+	    	$("#tweet-form").submit();
+		    return false;
+	    }
+	});
 	
 
 	function refreshPassengers(){
