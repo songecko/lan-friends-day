@@ -19,10 +19,9 @@ function addMessagesAndShowAlertModal( messages )
 	$('#alertModal').modal('show');
 }
 
+var sending = false;
 function sendForm( form )
 {
-	var sending = false;
-	
 	if(!sending)
 	{
 		sending = true;
@@ -39,20 +38,21 @@ function sendForm( form )
 	        processData:false,
 	        success: function(data)
 	        {
+	        	sending = false;
 	        	if (data.status === 'error') 
 	            {
 	                console.log("error");
-	                sending = false;
 	            } else 
 	            {	
 	            	if (data.onError == 'true')
-	            	{
-	            		showAlertModal(data.errors);
-
+	            	{	            		
+	            		$('.twitterMessage p').html(data.errors);
+	            		$('.twitterMessage').addClass('error');
 	            	}else
 	            	{
-	            		$('#form_data_tweet').val('#AmigosLan');
-	            		showAlertModal( data.message );
+	            		$('#form_data_tweet').val('#AmigosLan ');
+	            		$('.twitterMessage p').html(data.message);
+	            		$('.twitterMessage').addClass('sucess');
 	            		
 	            	}
 	            }
@@ -137,7 +137,7 @@ $(document).ready(function()
 		        type: "POST",
 		        url: $('#flight-passengers').data('refreshUrl'),
 		    }).success(function( data ){
-		        setTimeout(function(){refreshPassengers();}, 10000);
+		        setTimeout(function(){refreshPassengers();}, 5000);
 		        seats = data.seatsImageUrl;
 				
 				$.each(seats, function( index, urlImage ) {

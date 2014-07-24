@@ -4,7 +4,7 @@
 body { cursor:default; font-family: 'Roboto', sans-serif;background:#f3f8fd;height: 95%; width: 100%; position: absolute; }
 body.inicio { background:url(../images/bg.jpg) no-repeat center center fixed ; background-size:cover; height:auto}
 
-
+.inicio .container { max-width: 1170px !important ; }
 .container-fluid,
 .row-fluid { height: inherit; }
 
@@ -146,7 +146,6 @@ h2 { color:#22486e;font-size:20px;font-family: 'Candal', sans-serif; letter-spac
 
 
 
-
 @media screen and (max-width:790px){
 	
 body { overflow: visible !important}
@@ -173,4 +172,23 @@ h2 { margin-bottom:20px;}
 	margin-left: -25%;
 }
 
+}
+
+.avion .container-fluid .form-group{ margin-bottom: 0 ;}
+
+.avion .container-fluid .twitterMessage{
+	font-weight: bold;
+	height: 20px;
+	margin-top: 18px;
+}
+.avion .container-fluid .twitterMessage.error{
+	color: rgb(196, 20, 20);
+}
+
+.avion .container-fluid .twitterMessage.sucess{
+	color: rgb(94, 221, 77);	
+
+}
+.avion .container-fluid .twitterMessage p{
+	margin: 0;
 }

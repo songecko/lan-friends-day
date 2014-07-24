@@ -39,9 +39,12 @@
     <div class="box_twitter">
       <div class="form-group">
         <form  action="{{ path('lan_send_tweet')}}" method="post" id="tweet-form">
-          <textarea  data-rule-required="true"  name="form_data[tweet]"  class="form-control" rows="3" >#AmigosLan</textarea>
+          <textarea  id="form_data_tweet" data-rule-required="true"  name="form_data[tweet]"  class="form-control" rows="3" >#AmigosLan </textarea>
           <br>
           <button type="submit" class="btn btn-block">Enviar tweet y abordar</button>
+          <div class="twitterMessage">
+          	<p></p>
+          </div>
         </form>
       </div>
     </div>

@@ -4,23 +4,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<iframe width="70%" height="315" src="//www.youtube.com/embed/moAJorB7J1o" frameborder="0" allowfullscreen></iframe>
-			
-			<!-- Go to www.addthis.com/dashboard to customize your tools -->
-			<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513047f536a19e3a"></script>
-
-			{% if app.user and app.user.isRegistered %}
-			<h1>¡YA ESTÁS REGISTRADO!</h1> 
-      		<h2>PRÓXIMO VUELO EN</h2>
-      		
-      		{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
-			{% else %}
+			<iframe width="40%" height="315" src="//www.youtube.com/embed/moAJorB7J1o" frameborder="0" allowfullscreen></iframe>
+			<iframe width="40%" height="315" src="//www.youtube.com/embed/-wTxvIyckHI" frameborder="0" allowfullscreen></iframe>	
 			
 			<br>
-			
-			<h1>PRONTO VAS A PODER GANAR VIAJES PARA VOS Y 3 AMIGOS A BRASIL</h1>
-			
-			{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
 			
 			{%   if app.user %}
       		<!-- register -->
@@ -36,7 +23,23 @@
       			<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
       			<strong>Participá iniciando sesion</strong> en Twitter
       		</a>
-			{%   endif %}			
+			{%   endif %}	
+			
+			<!-- texto -->
+			{% if app.user and app.user.isRegistered %}
+			<h1>¡YA ESTÁS REGISTRADO!</h1> 
+      		<h2>PRÓXIMO VUELO EN</h2>
+      		
+      		{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
+			{% else %}
+			
+			<br>
+			
+			<h1>PRONTO VAS A PODER GANAR VIAJES PARA VOS Y 3 AMIGOS A BRASIL</h1>
+			
+			{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
+			
+		
 		
       		<!-- pasos 
 			<div class="pasos clearfix">
