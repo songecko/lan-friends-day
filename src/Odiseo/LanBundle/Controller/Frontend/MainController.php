@@ -172,7 +172,7 @@ class MainController extends Controller
 					
 					if (  isset($tweets->errors))
 					{
-						$data = array('onError' => 'true', 'errors' => 'Ocurrió un error, intenta luego.');
+						$data = array('onError' => 'true', 'errors' => '¡Tenés que hacer mensajes distintos!');
 						return new JsonResponse($data);
 					}
 					//grabar tweet en la base de datos.

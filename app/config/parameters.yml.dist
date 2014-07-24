@@ -16,3 +16,6 @@ parameters:
     consumer_key: 	   DjLQ9OM87GAPn6eTobxEnWAxz
     consumer_key_secret: 2bCmeQF6SPI5HAB2XpNVzx47pg2DT8cpATiJtkSMePQ8XOeWOw
     max_size_result_twitter: 8
+    router.request_context.host: amigoslan.com
+    router.request_context.scheme: http
+    router.request_context.base_url: 
