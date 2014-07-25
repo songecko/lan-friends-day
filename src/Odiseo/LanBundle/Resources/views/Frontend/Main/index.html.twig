@@ -4,63 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<iframe width="40%" height="315" src="//www.youtube.com/embed/moAJorB7J1o" frameborder="0" allowfullscreen></iframe>
-			<iframe width="40%" height="315" src="//www.youtube.com/embed/-wTxvIyckHI" frameborder="0" allowfullscreen></iframe>	
-			
-			<br>
-			
-			{%   if app.user and not app.user.isRegistered  %}
-      		<!-- register -->
-			{{ include('OdiseoLanBundle:Frontend/Main:registerForm.html.twig') }}
-			
-      		<a href="#" class="btn btn-primary loginButton" data-toggle="modal" data-target="#registerModal">
-      			<i class="glyphicon glyphicon-ok"></i>
-      			<strong>Hacé Check In </strong> y subite al avión
-      		</a>
-      		{%   elseif not app.user %}
-      		<!-- login -->
-      		<a href="{{ hwi_oauth_login_url('twitter') }}" class="btn btn-primary loginButton">
-      			<i class="glyphicon"><img src="{{ asset('bundles/odiseolan/images/twitter.png') }}"></i>
-      			<strong>Participá iniciando sesion</strong> en Twitter
-      		</a>
-			{%   endif %}	
-			
-			<!-- texto -->
-			{% if app.user and app.user.isRegistered %}
-			<h1>¡YA ESTÁS REGISTRADO!</h1> 
-      		<h2>PRÓXIMO VUELO EN</h2>
-      		
-      		{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
-			{% else %}
-			
-			<br>
-			
-			<h1>Logueate ahora para participar</h1>
-			
-			{{ render(controller('OdiseoLanBundle:Frontend/Main:countdown')) }}
-			
-		
-		
-      		<!-- pasos 
-			<div class="pasos clearfix">
-				<div class="col-xs-4">
-					<div class="ico"><img src="{{ asset('bundles/odiseolan/images/ico1.png') }}"/></div>
-					twiteá mencionando
-					3 amigos desde la app 
-				</div>
-        		<div class="col-xs-4">
-          			<div class="ico"><img src="{{ asset('bundles/odiseolan/images/ico2.png') }}"/></div>
-          			mantené tu<br>
-          			avatar en el avión 
-          		</div>
-        		<div class="col-xs-4">
-          			<div class="ico"><img src="{{ asset('bundles/odiseolan/images/ico3.png') }}"/></div>
-          			ganá 4 pasajes<br>
-          			a brasil 
-          		</div>
-			</div>    --> 
-      		
-			{% endif %}
+			<img alt="" src="{{ asset('bundles/odiseolan/images/winners.png') }}">
       	</div>
   	</div>
 </div>
